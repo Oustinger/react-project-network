@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import s from './Users.module.css';
 import userImg from '../../assets/imgs/user.png';
