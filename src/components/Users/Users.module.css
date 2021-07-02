@@ -7,3 +7,16 @@
     height: 75px;
     border-radius: 50%;
 }
+
+.pageNumber {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pageNumber:hover {
+    box-shadow: 0 0 0 1px white;
+}
+
+.pageNumber.selected {
+    font-weight: bold;
+}
