@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} />
                 <div>{props.profile.fullName}</div>
-                <div>О себе: {props.profile.aboutMe}</div>
+                { props.profile.aboutMe ? <div>О себе: {props.profile.aboutMe}</div> : null }
                 {
                     props.profile.lookingForAJob ?
                         <span>
@@ -24,16 +24,20 @@ const ProfileInfo = (props) => {
                         </span> :
                         null
                 }
-                <span>
-                    <div>Контакты</div>
-                    {contacts.map(([name, address]) => (
-                        address ? <div>
-                            <div>
-                                <a target="_blank" href={address}>{name}</a>
-                            </div>
-                        </div> : null
-                    ))}
-                </span>
+                {
+                    contacts.length > 0 ?
+                        <span>
+                            <div>Контакты</div>
+                            {contacts.map(([name, address]) => (
+                                address ? <div>
+                                    <div>
+                                        <a target="_blank" href={address}>{name}</a>
+                                    </div>
+                                </div> : null
+                            ))}
+                        </span> :
+                        null
+                }
             </div>
         </div>
     } </>;

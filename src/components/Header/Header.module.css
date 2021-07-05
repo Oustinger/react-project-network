@@ -7,3 +7,13 @@
 .logo {
     max-width: 60px;
 }
+
+.authBlock {
+    margin-right: 15px;
+    float: right;
+}
+
+.authBlock .userImg {
+    width: 30px;
+    height: ;
+}
