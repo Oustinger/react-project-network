@@ -1,10 +1,9 @@
 import React from 'react';
 import s from './Profile.module.css';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
 import { setUserProfile } from './../../redux/profileReducer';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -17,8 +16,7 @@ class ProfileContainer extends React.Component {
     render() {
         return (
             <div>
-                <ProfileInfo {...this.props} />
-                <MyPostsContainer />
+                <Profile profile={this.props.profile} />
             </div>
         );
     }
