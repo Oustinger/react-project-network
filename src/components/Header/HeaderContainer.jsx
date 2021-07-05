@@ -26,7 +26,6 @@ class HeaderContainer extends React.Component {
     render() {
         return (
             <Header userId={this.props.userId}
-                email={this.props.email}
                 login={this.props.login}
                 photo={this.props.photo}
                 isAuth={this.props.isAuth}
