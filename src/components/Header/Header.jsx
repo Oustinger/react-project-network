@@ -16,7 +16,7 @@ const Header = (props) => {
                                 <div>{props.login}</div>
                             </NavLink>
                         </div> :
-                        <a target="_blanc" href="https://social-network.samuraijs.com/login">LogIn</a>
+                        <NavLink to="/login">LogIn</NavLink>
                 }
             </div>
         </header>
