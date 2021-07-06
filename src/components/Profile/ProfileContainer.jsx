@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProfile } from './../../redux/profileReducer';
+import { getUserProfile } from './../../redux/profileReducer';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { withRouter } from 'react-router';
@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 class ProfileContainer extends React.Component {
     componentDidMount() {
         const userId = this.props.match.params.userId;
-        this.props.getProfile(userId);
+        this.props.getUserProfile(userId);
     }
 
     render() {
@@ -25,4 +25,4 @@ const mapStateToProps = (state) => ({
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { getProfile })(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent);

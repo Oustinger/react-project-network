@@ -23,9 +23,7 @@ export const usersAPI = {
         return axiosInstance.delete(`follow/${userId}`)
             .then((response) => response.data);
     },
-};
 
-export const profileAPI = {
     getProfile(userId) {
         return axiosInstance.get(`profile/${userId || 18114}`)
             .then((response) => response.data);
@@ -33,7 +31,7 @@ export const profileAPI = {
 };
 
 export const authAPI = {
-    getAuth() {
+    me() {
         return axiosInstance.get(`auth/me`)
             .then((response) => response.data);
     },
