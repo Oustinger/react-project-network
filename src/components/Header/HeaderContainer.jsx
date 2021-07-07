@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAuthUserData } from './../../redux/authReducer';
+import { getAuthUserData, logout } from './../../redux/authReducer';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -13,6 +13,7 @@ class HeaderContainer extends React.Component {
         return (
             <Header userId={this.props.userId}
                 login={this.props.login}
+                logout={this.props.logout}
                 photo={this.props.photo}
                 isAuth={this.props.isAuth}
             />
@@ -29,4 +30,4 @@ const mapStateToProps = (state) => ({
 
 const WithUrlDataContainerComponent = withRouter(HeaderContainer);
 
-export default connect(mapStateToProps, { getAuthUserData })(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, { getAuthUserData, logout })(WithUrlDataContainerComponent);
