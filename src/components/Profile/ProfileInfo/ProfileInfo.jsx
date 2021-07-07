@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from './../../common/Preloader/Preloader';
-import { NavLink } from 'react-router-dom';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     const contacts = props.profile && Object.entries(props.profile.contacts);
+    const hasContacts = props.profile && contacts.some(([address]) => address).length > 0;
 
     return <> {
         !props.profile && <Preloader /> ||
@@ -15,7 +16,12 @@ const ProfileInfo = (props) => {
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} />
                 <div>{props.profile.fullName}</div>
-                { props.profile.aboutMe ? <div>О себе: {props.profile.aboutMe}</div> : null }
+                <ProfileStatus status={props.status} updateProfileStatus={props.updateProfileStatus} />
+                {
+                    props.profile.aboutMe ?
+                        <div>Обо мне: {props.profile.aboutMe}</div> :
+                        null
+                }
                 {
                     props.profile.lookingForAJob ?
                         <span>
@@ -25,7 +31,7 @@ const ProfileInfo = (props) => {
                         null
                 }
                 {
-                    contacts.length > 0 ?
+                    hasContacts ?
                         <span>
                             <div>Контакты</div>
                             {contacts.map(([name, address]) => (
