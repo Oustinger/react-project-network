@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
+import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -39,4 +40,5 @@ export default compose(
         addPost
     }),
     withRouter,
+    withAuthRedirect,
 )(ProfileContainer);

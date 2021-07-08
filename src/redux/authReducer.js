@@ -1,7 +1,6 @@
 import { authAPI, usersAPI } from './../api/api';
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
-const CLEAN_USER_AUTH_DATA = 'CLEAN_USER_AUTH_DATA';
 
 const initialState = {
     userId: null,
@@ -14,25 +13,16 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_DATA: {
-            return { ...state, ...action.data, isAuth: true };
-        }
-        case CLEAN_USER_AUTH_DATA: {
-            return {
-                ...state, userId: null, email: null,
-                login: null, photo: null, isAuth: false,
-            };
+            return { ...state, ...action.payload };
         }
         default:
             return state;
     }
 };
 
-export const setAuthData = (userId, email, login, photo) => ({
+export const setAuthData = (userId, email, login, photo, isAuth) => ({
     type: SET_AUTH_DATA,
-    data: { userId, email, login, photo },
-});
-export const cleanUserAuthData = () => ({
-    type: CLEAN_USER_AUTH_DATA,
+    payload: { userId, email, login, photo, isAuth },
 });
 
 
@@ -46,7 +36,7 @@ export const getAuthUserData = () => (dispatch) => {
 
                 usersAPI.getProfile(userId)
                     .then((data) => {
-                        dispatch(setAuthData(userId, email, login, data.photos.small));
+                        dispatch(setAuthData(userId, email, login, data.photos.small, true));
                     });
             }
         });
@@ -65,7 +55,7 @@ export const logout = () => (dispatch) => {
     authAPI.logout()
         .then((data) => {
             if (data.resultCode === 0) {
-                dispatch(cleanUserAuthData());
+                dispatch(setAuthData(null, null, null, null, false));
             }
         });
 };
