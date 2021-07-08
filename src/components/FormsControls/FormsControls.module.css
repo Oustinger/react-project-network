@@ -10,3 +10,10 @@
 .errorText {
     color: red;
 }
+
+.commonError {
+    color: red;
+    border: 2px solid red;
+    width: fit-content;
+    padding: 2px 5px;
+}
