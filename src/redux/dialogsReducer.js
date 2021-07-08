@@ -1,5 +1,6 @@
+import { reset as resetForm } from 'redux-form';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 const initialState = {
     dialogs: [
@@ -14,7 +15,6 @@ const initialState = {
         { id: 2, message: 'How are you?' },
         { id: 3, message: 'Hi! I\'m OK!' },
     ],
-    newMessageText: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -22,19 +22,12 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             const newMessage = {
                 id: state.messages.length + 1,
-                message: state.newMessageText,
+                message: action.text,
             };
 
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageText: '',
-            };
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessageText: action.newText,
             };
         }
         default:
@@ -42,10 +35,12 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const addMessage = (text) => ({ type: ADD_MESSAGE, text });
 
-export const updateNewMessageTextActionCreator = (newText) => (
-    { type: UPDATE_NEW_MESSAGE_TEXT, newText }
-);
+
+export const resetDialogForm = () => (dispatch) => {
+    dispatch(resetForm('dialog'));
+};
+
 
 export default dialogsReducer;

@@ -36,7 +36,7 @@ export const profileAPI = {
             .then((response) => response.data);
     },
     getProfileStatus(userId) {
-        return axiosInstance.get(`profile/status/${userId}`)
+        return axiosInstance.get(`profile/status/${userId || 18114}`)
             .then((response) => response.data);
     },
     updateProfileStatus(status) {

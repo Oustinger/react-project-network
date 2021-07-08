@@ -1,7 +1,7 @@
 import { profileAPI, usersAPI } from "../api/api";
+import { reset as resetForm } from 'redux-form';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 
@@ -11,7 +11,6 @@ const initialState = {
         { id: 2, message: 'Hello, friends!!!', likesCount: '12' },
         { id: 3, message: 'My first post! :)', likesCount: '10' },
     ],
-    newPostText: '',
     profile: null,
     status: '',
 };
@@ -21,20 +20,13 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             const newPost = {
                 id: state.posts.length + 1,
-                message: state.newPostText,
+                message: action.text,
                 likesCount: '0',
             };
 
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: '',
-            };
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText,
             };
         }
         case SET_USER_PROFILE: {
@@ -48,10 +40,7 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateNewPostTextActionCreator = (newText) => (
-    { type: UPDATE_NEW_POST_TEXT, newText }
-);
+export const addPost = (text) => ({ type: ADD_POST, text });
 export const setUserProfile = (profile) => (
     { type: SET_USER_PROFILE, profile }
 );
@@ -78,6 +67,9 @@ export const updateProfileStatus = (status) => (dispatch) => {
             if (data.resultCode === 0)
                 dispatch(setProfileStatus(status));
         });
+};
+export const resetPostForm = () => (dispatch) => {
+    dispatch(resetForm('post'));
 };
 
 
