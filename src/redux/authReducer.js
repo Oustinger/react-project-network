@@ -28,14 +28,14 @@ export const setAuthData = (userId, email, login, photo, isAuth) => ({
 
 
 export const getAuthUserData = () => (dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then((data) => {
             if (data.resultCode === 0) {
                 const userId = data.data.id;
                 const email = data.data.email;
                 const login = data.data.login;
 
-                usersAPI.getProfile(userId)
+                return usersAPI.getProfile(userId)
                     .then((data) => {
                         dispatch(setAuthData(userId, email, login, data.photos.small, true));
                     });

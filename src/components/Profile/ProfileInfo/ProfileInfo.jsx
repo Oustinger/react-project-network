@@ -7,9 +7,10 @@ const ProfileInfo = (props) => {
     const contacts = props.profile && Object.entries(props.profile.contacts);
     const hasContacts = props.profile && contacts.some(([address]) => address).length > 0;
 
+    const isProfileDataLoaded = !props.isFetchingUserProfile && props.profile;
+
     return <> {
-        !props.profile && <Preloader /> ||
-        <div>
+        isProfileDataLoaded && <div>
             <div className={s.bannerBlock}>
                 <img src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" />
             </div>
@@ -45,7 +46,7 @@ const ProfileInfo = (props) => {
                         null
                 }
             </div>
-        </div>
+        </div> || <Preloader />
     } </>;
 }
 

@@ -4,6 +4,7 @@ import { reset as resetForm } from 'redux-form';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
+const FETCHING_USER_PROFILE = 'FETCHING_USER_PROFILE';
 
 const initialState = {
     posts: [
@@ -13,6 +14,7 @@ const initialState = {
     ],
     profile: null,
     status: '',
+    isFetchingUserProfile: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -35,6 +37,9 @@ const profileReducer = (state = initialState, action) => {
         case SET_PROFILE_STATUS: {
             return { ...state, status: action.status };
         }
+        case FETCHING_USER_PROFILE: {
+            return { ...state, isFetchingUserProfile: action.isFetching };
+        }
         default:
             return state;
     }
@@ -47,12 +52,17 @@ export const setUserProfile = (profile) => (
 export const setProfileStatus = (status) => (
     { type: SET_PROFILE_STATUS, status }
 );
+export const fetchingUserProfile = (isFetching) => (
+    { type: FETCHING_USER_PROFILE, isFetching }
+);
 
 
 export const getUserProfile = (userId) => (dispatch) => {
+    dispatch(fetchingUserProfile(true));
     usersAPI.getProfile(userId)
         .then((data) => {
             dispatch(setUserProfile(data));
+            dispatch(fetchingUserProfile(false));
         });
 };
 export const getProfileStatus = (userId) => (dispatch) => {

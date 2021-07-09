@@ -21,7 +21,8 @@ class ProfileContainer extends React.Component {
                     updateProfileStatus={this.props.updateProfileStatus}
                     posts={this.props.posts}
                     addPost={this.props.addPost}
-                    resetPostForm={this.props.resetPostForm} />
+                    resetPostForm={this.props.resetPostForm}
+                    isFetchingUserProfile={this.props.isFetchingUserProfile} />
             </div>
         );
     }
@@ -31,6 +32,7 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     posts: state.profilePage.posts,
+    isFetchingUserProfile: state.profilePage.isFetchingUserProfile,
 });
 
 export default compose(

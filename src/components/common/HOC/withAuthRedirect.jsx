@@ -15,8 +15,7 @@ export const withAuthRedirect = (Component) => {
         }
 
         render() {
-            console.log(123);
-            if (!this.props.isAuth && !this.profileUrlUserId)
+            if (!this.props.isAuth && !this.hasProfileUrlUserId())
                 return <Redirect to="/login" />;
 
             return <Component {...this.props} />;
