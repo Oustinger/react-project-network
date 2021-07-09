@@ -5,7 +5,7 @@ import { Input } from "../common/FormsControls/FormsControls";
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from './../../redux/authReducer';
-import styles from '../FormsControls/FormsControls.module.css';
+import styles from '../common/FormsControls/FormsControls.module.css';
 
 const maxLength30 = maxLengthCreator(30);
 
