@@ -1,15 +1,15 @@
 import React from 'react';
+import DialogForm from './DialogForm/DialogForm';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
-import DialogForm from './DialogForm/DialogForm';
 
-const Dialogs = (props) => {
+const Dialogs = ({ dialogsPage, addMessage, resetDialogForm }) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {
-                    props.dialogsPage.dialogs.map(({ id, name }) => (
+                    dialogsPage.dialogs.map(({ id, name }) => (
                         <DialogItem name={name} id={id} key={id} />
                     ))
                 }
@@ -17,15 +17,15 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>
                     {
-                        props.dialogsPage.messages.map(({ id, message }) => (
+                        dialogsPage.messages.map(({ id, message }) => (
                             <MessageItem message={message} key={id} />
                         ))
                     }
                 </div>
                 <div className={s.newMessageBlock}>
                     <DialogForm onSubmit={({ messageText }) => {
-                        props.addMessage(messageText);
-                        props.resetDialogForm();
+                        addMessage(messageText);
+                        resetDialogForm();
                     }} />
                 </div>
             </div>

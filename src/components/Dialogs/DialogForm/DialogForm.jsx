@@ -1,15 +1,14 @@
 import React from "react";
-import { Field, reduxForm } from 'redux-form';
-import { maxLengthCreator, required } from "../../../utils/validators/validators";
-import { Textarea } from '../../common/FormsControls/FormsControls';
+import { reduxForm } from 'redux-form';
+import { maxLengthCreator } from "../../../utils/validators";
+import { createField, Textarea } from '../../common/FormsControls/FormsControls';
 
 const maxLength15 = maxLengthCreator(15);
 
-const DialogForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+const DialogForm = ({ handleSubmit }) => {
+    return <form onSubmit={handleSubmit}>
         <div>
-            <Field component={Textarea} name='messageText' placeholder="Write a message"
-                validate={[required, maxLength15]} />
+            {createField(Textarea, [maxLength15], 'messageText', { placeholder: "Write a message" })}
         </div>
         <div>
             <button>Write message</button>

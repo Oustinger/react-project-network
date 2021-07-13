@@ -3,25 +3,25 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(({ posts, addPost, resetPostForm }) => {
     return (
         <div className={s.postsBlock}>
             My posts
             <div>
                 <PostForm onSubmit={({ postText }) => {
-                    props.addPost(postText);
-                    props.resetPostForm();
+                    addPost(postText);
+                    resetPostForm();
                 }} />
             </div>
             <div className={s.posts}>
                 {
-                    props.posts.map(({ id, message, likesCount }) =>
+                    posts.map(({ id, message, likesCount }) =>
                         <Post message={message} likesCount={likesCount} key={id} />
                     )
                 }
             </div>
         </div>
     );
-}
+});
 
 export default MyPosts;

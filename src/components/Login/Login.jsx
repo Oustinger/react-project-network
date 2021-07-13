@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLengthCreator, required } from "../../utils/validators/validators";
-import { Input } from "../common/FormsControls/FormsControls";
+import { maxLengthCreator, required } from "../../utils/validators";
+import { createField, Input } from "../common/FormsControls/FormsControls";
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from './../../redux/authReducer';
@@ -9,25 +9,22 @@ import styles from '../common/FormsControls/FormsControls.module.css';
 
 const maxLength30 = maxLengthCreator(30);
 
-const LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+const LoginForm = ({ error, handleSubmit }) => {
+    return <form onSubmit={handleSubmit}>
         <div>
-            <Field placeholder='Email' name='email' component={Input}
-                validate={[required, maxLength30]} />
+            {createField(Input, [required, maxLength30], 'email', { placeholder: "Email" })}
         </div>
         <div>
-            <Field placeholder='Password' name='password' component={Input}
-                validate={[required, maxLength30]} />
+            {createField(Input, [required, maxLength30], 'password', { placeholder: "Password" })}
         </div>
         <div>
             <div>
-                <Field name='rememberMe' type='checkbox' component={Input} />
+                {createField(Input, [], 'rememberMe', { type: 'checkbox', text: ' remember me' })}
             </div>
-            <div> remember me</div>
         </div>
         {
-            props.error && <div className={styles.commonError}>
-                {props.error}
+            error && <div className={styles.commonError}>
+                {error}
             </div>
         }
         <div>
@@ -38,13 +35,13 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
-const Login = (props) => {
-    if (props.isAuth)
+const Login = ({ isAuth, login }) => {
+    if (isAuth)
         return <Redirect to="/profile" />
 
     return <div>
         <h2>Login page</h2>
-        <LoginReduxForm onSubmit={props.login} />
+        <LoginReduxForm onSubmit={login} />
     </div>
 };
 

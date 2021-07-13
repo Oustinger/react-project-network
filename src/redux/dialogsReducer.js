@@ -1,6 +1,6 @@
 import { reset as resetForm } from 'redux-form';
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'network/dialogs/ADD-MESSAGE';
 
 const initialState = {
     dialogs: [

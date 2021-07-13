@@ -1,5 +1,8 @@
 import React from 'react';
-import { getUserProfile, getProfileStatus, updateProfileStatus, resetPostForm, addPost } from './../../redux/profileReducer';
+import {
+    getUserProfile, getProfileStatus, updateProfileStatus,
+    resetPostForm, addPost
+} from './../../redux/profileReducer';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { withRouter } from 'react-router';

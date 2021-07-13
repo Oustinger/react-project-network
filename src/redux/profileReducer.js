@@ -1,10 +1,10 @@
 import { profileAPI, usersAPI } from "../api/api";
 import { reset as resetForm } from 'redux-form';
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
-const FETCHING_USER_PROFILE = 'FETCHING_USER_PROFILE';
+const ADD_POST = 'network/profile/ADD-POST';
+const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
+const SET_PROFILE_STATUS = 'network/profile/SET_PROFILE_STATUS';
+const FETCHING_USER_PROFILE = 'network/profile/FETCHING_USER_PROFILE';
 
 const initialState = {
     posts: [
@@ -57,26 +57,21 @@ export const fetchingUserProfile = (isFetching) => (
 );
 
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
     dispatch(fetchingUserProfile(true));
-    usersAPI.getProfile(userId)
-        .then((data) => {
-            dispatch(setUserProfile(data));
-            dispatch(fetchingUserProfile(false));
-        });
+    
+    const data = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
+    dispatch(fetchingUserProfile(false));
 };
-export const getProfileStatus = (userId) => (dispatch) => {
-    profileAPI.getProfileStatus(userId)
-        .then((data) => {
-            dispatch(setProfileStatus(data));
-        });
+export const getProfileStatus = (userId) => async (dispatch) => {
+    const data = await profileAPI.getProfileStatus(userId);
+    dispatch(setProfileStatus(data));
 };
-export const updateProfileStatus = (status) => (dispatch) => {
-    profileAPI.updateProfileStatus(status)
-        .then((data) => {
-            if (data.resultCode === 0)
-                dispatch(setProfileStatus(status));
-        });
+export const updateProfileStatus = (status) => async (dispatch) => {
+    const data = await profileAPI.updateProfileStatus(status);
+    if (data.resultCode === 0)
+        dispatch(setProfileStatus(status));
 };
 export const resetPostForm = () => (dispatch) => {
     dispatch(resetForm('post'));
