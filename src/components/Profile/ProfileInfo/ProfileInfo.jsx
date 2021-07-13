@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from './../../common/Preloader/Preloader';
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
     const contacts = props.profile && Object.entries(props.profile.contacts);

@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect, Provider } from 'react-redux';
+import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Preloader from './components/common/Preloader/Preloader';
@@ -14,8 +14,9 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import { initialize } from './redux/appReducer';
+import store from './redux/reduxStore';
 
-class App extends React.Component {
+class AppComponent extends Component {
     componentDidMount() {
         this.props.initialize();
     }
@@ -40,11 +41,21 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    isInitialized: state.app.isInitialized,
-});
+const mapStateToProps = (state) => {
+    return {isInitialized: state.app.isInitialized}
+};
 
-export default compose(
+const AppComponentContainer = compose(
     connect(mapStateToProps, { initialize }),
     withRouter,
-)(App);
+)(AppComponent);
+
+const App = () => (
+    <BrowserRouter>
+        <Provider store={store}>
+            <AppComponentContainer />
+        </Provider>
+    </BrowserRouter>
+);
+
+export default App;
