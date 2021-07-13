@@ -1,30 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Paginator.module.css';
 
-const getPages = (totalUsersCount, pageSize) => {
-    const pagesCount = Math.ceil(totalUsersCount / pageSize);
+const Paginator = ({ totalItemsCount, pageSize, currentPage, onChangePageNumber, portionSize = 10 }) => {
+    const pagesCount = Math.ceil(totalItemsCount / pageSize);
+    const pages = Array.apply(null, Array(pagesCount))   // создаём пустой массив нужной длины
+        .map((val, idx) => idx + 1);                                            // заполняем его номерами страниц
 
-    const pages = Array.apply(null, Array(pagesCount > 20 ? 20 : pagesCount))// создаём пустой массив нужной длины
-        .map((val, idx) => idx + 1);                                         // заполняем его номерами страниц
+    const portionsCount = Math.ceil(pagesCount / portionSize);
+    const [portionNumber, setPortionNumber] = useState(1);
+    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    const rightPortionPageNumber = portionNumber * portionSize;
 
-    return pages;
-};
-
-const Paginator = ({ totalUsersCount, pageSize, currentPage, onChangePageNumber }) => {
-    const pages = getPages(totalUsersCount, pageSize);
-    
     return (
         <div>
             {
-                pages.map(p => {
+                portionNumber > 1 &&
+                <button onClick={() => setPortionNumber(portionNumber - 1)}>Prev</button>
+            }
+            {
+                pages.filter(pageNumber => (
+                    pageNumber >= leftPortionPageNumber && pageNumber <= rightPortionPageNumber
+                )).map(pageNumber => {
                     return (
                         <span
-                            key={p}
-                            className={`${s.pageNumber} ${p === currentPage ? s.selected : null}`}
-                            onClick={() => onChangePageNumber(p)}
-                        >{p}</span>
+                            key={pageNumber}
+                            className={`${s.pageNumber} ${pageNumber === currentPage ? s.selected : null}`}
+                            onClick={() => onChangePageNumber(pageNumber)}
+                        >{pageNumber}</span>
                     );
                 })
+            }
+            {
+                portionNumber < portionsCount &&
+                <button onClick={() => setPortionNumber(portionNumber + 1)}>Next</button>
             }
         </div>
     );
