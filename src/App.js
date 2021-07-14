@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
-import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import { HashRouter, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import withSuspect from './components/common/HOC/withSuspect';
@@ -53,11 +53,11 @@ const AppComponentContainer = compose(
 )(AppComponent);
 
 const App = () => (
-    <BrowserRouter>
+    <HashRouter>
         <Provider store={store}>
             <AppComponentContainer />
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 export default App;
