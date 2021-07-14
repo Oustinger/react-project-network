@@ -3,8 +3,8 @@ import { connect, Provider } from 'react-redux';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
+import withSuspect from './components/common/HOC/withSuspect';
 import Preloader from './components/common/Preloader/Preloader';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import Music from './components/Music/Music';
@@ -15,6 +15,8 @@ import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import { initialize } from './redux/appReducer';
 import store from './redux/reduxStore';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class AppComponent extends Component {
     componentDidMount() {
@@ -29,7 +31,7 @@ class AppComponent extends Component {
             <HeaderContainer />
             <Navbar />
             <div className="app-wrapper_content">
-                <Route path="/dialogs" render={() => <DialogsContainer />} />
+                <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
                 <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                 <Route path="/users" render={() => <UsersContainer />} />
                 <Route path="/news" render={() => <News />} />
