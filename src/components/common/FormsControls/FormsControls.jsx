@@ -29,14 +29,17 @@ export const Input = (props) => {
     </FormControl>
 }
 
-export const createField = (component, validate, name, { type, placeholder, text }) => {
+export const createField = (component, validate, name, { type, placeholder, textBefore, textAfter }) => {
     return <div>
+        {textBefore && <div>
+            <b>{textBefore}</b>
+        </div>}
         <div>
             <Field component={component} name={name} placeholder={placeholder}
                 validate={validate} type={type} />
         </div>
-        <div>
-            {text}
-        </div>
+        {textAfter && <div>
+            {textAfter}
+        </div>}
     </div>
 }

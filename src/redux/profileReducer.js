@@ -1,10 +1,14 @@
+import { reset as resetForm, stopSubmit } from 'redux-form';
 import { profileAPI, usersAPI } from "../api/api";
-import { reset as resetForm } from 'redux-form';
+import { getErrors } from './../api/api';
 
 const ADD_POST = 'network/profile/ADD-POST';
 const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
 const SET_PROFILE_STATUS = 'network/profile/SET_PROFILE_STATUS';
 const FETCHING_USER_PROFILE = 'network/profile/FETCHING_USER_PROFILE';
+const SET_CURRENT_USER_ID = 'network/profile/SET_CURRENT_USER_ID';
+const SAVE_PHOTO_SUCCESS = 'network/profile/SAVE_PHOTO_SUCCESS';
+const TOGGLE_PROFILE_DATA_EDIT_MODE = 'network/profile/TOGGLE_PROFILE_DATA_EDIT_MODE';
 
 const initialState = {
     posts: [
@@ -15,6 +19,8 @@ const initialState = {
     profile: null,
     status: '',
     isFetchingUserProfile: false,
+    currentUserId: null,
+    profileDataEditMode: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -40,6 +46,15 @@ const profileReducer = (state = initialState, action) => {
         case FETCHING_USER_PROFILE: {
             return { ...state, isFetchingUserProfile: action.isFetching };
         }
+        case SET_CURRENT_USER_ID: {
+            return { ...state, currentUserId: action.userId };
+        }
+        case SAVE_PHOTO_SUCCESS: {
+            return { ...state, profile: { ...state.profile, photos: action.photos } };
+        }
+        case TOGGLE_PROFILE_DATA_EDIT_MODE: {
+            return { ...state, profileDataEditMode: !state.profileDataEditMode };
+        }
         default:
             return state;
     }
@@ -55,11 +70,20 @@ export const setProfileStatus = (status) => (
 export const fetchingUserProfile = (isFetching) => (
     { type: FETCHING_USER_PROFILE, isFetching }
 );
+export const setCurrentUserId = (userId) => (
+    { type: SET_CURRENT_USER_ID, userId }
+);
+export const savePhotoSuccess = (photos) => (
+    { type: SAVE_PHOTO_SUCCESS, photos }
+);
+export const toggleProfileDataEditMode = () => (
+    { type: TOGGLE_PROFILE_DATA_EDIT_MODE }
+);
 
 
 export const getUserProfile = (userId) => async (dispatch) => {
     dispatch(fetchingUserProfile(true));
-    
+
     const data = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(data));
     dispatch(fetchingUserProfile(false));
@@ -75,6 +99,24 @@ export const updateProfileStatus = (status) => async (dispatch) => {
 };
 export const resetPostForm = () => (dispatch) => {
     dispatch(resetForm('post'));
+};
+export const savePhoto = (file) => async (dispatch) => {
+    const data = await profileAPI.savePhoto(file);
+    if (data.resultCode === 0)
+        dispatch(savePhotoSuccess(data.data.photos));
+};
+export const updateProfileData = (formData) => (dispatch, getState) => {
+    const userId = getState().auth.userId;
+
+    profileAPI.updateData({ userId, ...formData })
+        .then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(toggleProfileDataEditMode());
+                dispatch(getUserProfile(userId));
+            } else {
+                dispatch(stopSubmit('profile', getErrors(data.messages)));
+            }
+        });
 };
 
 

@@ -1,15 +1,18 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../utils/validators";
 import { createField, Input } from "../common/FormsControls/FormsControls";
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { login } from './../../redux/authReducer';
 import styles from '../common/FormsControls/FormsControls.module.css';
+import { login } from './../../redux/authReducer';
 
 const maxLength30 = maxLengthCreator(30);
 
 const LoginForm = ({ error, handleSubmit }) => {
+    if (!error) {
+        (() => {})();
+    };
     return <form onSubmit={handleSubmit}>
         <div>
             {createField(Input, [required, maxLength30], 'email', { placeholder: "Email" })}
@@ -19,7 +22,7 @@ const LoginForm = ({ error, handleSubmit }) => {
         </div>
         <div>
             <div>
-                {createField(Input, [], 'rememberMe', { type: 'checkbox', text: ' remember me' })}
+                {createField(Input, [], 'rememberMe', { type: 'checkbox', textAfter: ' remember me' })}
             </div>
         </div>
         {

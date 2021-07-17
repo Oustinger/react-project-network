@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form';
-import { authAPI, profileAPI, usersAPI } from './../api/api';
+import { authAPI, profileAPI, getErrors } from './../api/api';
 
 const SET_AUTH_DATA = 'network/auth/SET_AUTH_DATA';
 
@@ -42,14 +42,15 @@ export const getAuthUserData = () => async (dispatch) => {
 
     return data;
 };
-export const login = (formData) => async (dispatch) => {
-    const data = await authAPI.login(formData);
-    if (data.resultCode === 0) {
-        dispatch(getAuthUserData());
-    } else {
-        const message = data.messages.length > 0 ? data.messages[0] : 'Some error';
-        dispatch(stopSubmit('login', { _error: message }));
-    }
+export const login = (formData) => (dispatch) => {
+    authAPI.login(formData)
+        .then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(getAuthUserData());
+            } else {
+                dispatch(stopSubmit('login', getErrors(data.messages)));
+            }
+        });
 };
 export const logout = () => async (dispatch) => {
     const data = await authAPI.logout();

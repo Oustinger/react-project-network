@@ -5,3 +5,11 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.userPhoto {
+    max-width: 150px;
+}
+
+.contactsList {
+    margin-left: 15px;
+}
