@@ -22,8 +22,8 @@ const ProfileStatus = (props) => {
     return <div>
         {
             !editMode ?
-                <span onDoubleClick={toggleEditMode}>{status || '-set-status-'}</span> :
-                <input onChange={onStatusChange} onBlur={toggleEditMode}
+                <span onDoubleClick={props.isOwner ? toggleEditMode : null}>{status || '-set-status-'}</span>
+                : <input onChange={onStatusChange} onBlur={toggleEditMode}
                     autoFocus={true} value={status} />
         }
     </div>;

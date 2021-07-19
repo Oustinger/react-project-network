@@ -102,3 +102,10 @@ export const authAPI = {
             .then((response) => response.data);
     },
 };
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return axiosInstance.get(`security/get-captcha-url`)
+            .then((response) => response.data);
+    },
+};

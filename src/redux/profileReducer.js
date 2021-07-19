@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { reset as resetForm, stopSubmit } from 'redux-form';
 import { profileAPI, usersAPI } from "../api/api";
 import { getErrors } from './../api/api';
@@ -105,10 +106,19 @@ export const savePhoto = (file) => async (dispatch) => {
     if (data.resultCode === 0)
         dispatch(savePhotoSuccess(data.data.photos));
 };
+const checkUpdateProfileFormData = (formData) => {
+    const fixedContacts = Object.entries(formData.contacts).filter(([contact, address]) => address)
+        .filter(([contact, address]) => !address.includes('://'))
+        .map(([contact, address]) => [contact, `https://${address}`])
+        .reduce((acc, [contact, address]) => ({ ...acc, [contact]: address }), {});
+
+    return _.merge({ ...formData }, { contacts: fixedContacts });
+};
 export const updateProfileData = (formData) => (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const checkedFromData = checkUpdateProfileFormData(formData);
 
-    profileAPI.updateData({ userId, ...formData })
+    profileAPI.updateData({ userId, ...checkedFromData })
         .then((data) => {
             if (data.resultCode === 0) {
                 dispatch(toggleProfileDataEditMode());

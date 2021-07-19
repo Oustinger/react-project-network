@@ -27,7 +27,7 @@ const ProfileInfo = ({
                 <img src={profile.photos.large || userImg} className={s.userPhoto} />
                 {isOwner && <input type='file' onChange={onSavePhoto} />}
                 <div>{profile.fullName}</div>
-                <ProfileStatusWithHooks status={status} updateProfileStatus={updateProfileStatus} />
+                <ProfileStatusWithHooks status={status} updateProfileStatus={updateProfileStatus} isOwner={isOwner} />
                 {
                     editMode ?
                         <ProfileForm onSubmit={updateProfileData} initialValues={profile} /> :
