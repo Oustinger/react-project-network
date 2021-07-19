@@ -85,7 +85,7 @@ export const toggleProfileDataEditMode = () => (
 export const getUserProfile = (userId) => async (dispatch) => {
     dispatch(fetchingUserProfile(true));
 
-    const data = await usersAPI.getProfile(userId);
+    const data = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(data));
     dispatch(fetchingUserProfile(false));
 };
@@ -112,7 +112,7 @@ const checkUpdateProfileFormData = (formData) => {
         .map(([contact, address]) => [contact, `https://${address}`])
         .reduce((acc, [contact, address]) => ({ ...acc, [contact]: address }), {});
 
-    return _.merge({ ...formData }, { contacts: fixedContacts });
+    return _.merge({ ...formData, contacts: { ...formData.contacts } }, { contacts: fixedContacts });
 };
 export const updateProfileData = (formData) => (dispatch, getState) => {
     const userId = getState().auth.userId;

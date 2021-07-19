@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
-import { HashRouter, Route, withRouter } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import withSuspect from './components/common/HOC/withSuspect';
@@ -19,8 +19,18 @@ import store from './redux/reduxStore';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class AppComponent extends Component {
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        alert("Error occurred: " + promiseRejectionEvent.reason.message);
+    }
+
     componentDidMount() {
         this.props.initialize();
+
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -31,20 +41,25 @@ class AppComponent extends Component {
             <HeaderContainer />
             <Navbar />
             <div className="app-wrapper_content">
-                <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
-                <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-                <Route path="/users" render={() => <UsersContainer />} />
-                <Route path="/news" render={() => <News />} />
-                <Route path="/music" render={() => <Music />} />
-                <Route path="/settings" render={() => <Settings />} />
-                <Route path="/login" render={() => <Login />} />
+                <Switch >
+                    <Route exact path="/" render={() => <Redirect to="/profile" />} />
+                    <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
+                    <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+                    <Route path="/users" render={() => <UsersContainer />} />
+                    <Route path="/news" render={() => <News />} />
+                    <Route path="/music" render={() => <Music />} />
+                    <Route path="/settings" render={() => <Settings />} />
+                    <Route path="/login/facebook" render={() => <div>Facebook login page</div>} />
+                    <Route path="/login" render={() => <Login />} />
+                    <Route path="*" render={() => <div>404 Not found</div>} />
+                </Switch>
             </div>
         </div>);
     }
 }
 
 const mapStateToProps = (state) => {
-    return {isInitialized: state.app.isInitialized}
+    return { isInitialized: state.app.isInitialized }
 };
 
 const AppComponentContainer = compose(

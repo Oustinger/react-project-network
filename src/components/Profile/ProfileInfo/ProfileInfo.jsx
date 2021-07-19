@@ -1,11 +1,10 @@
 import React from 'react';
 import userImg from '../../../assets/imgs/user.png';
 import Preloader from './../../common/Preloader/Preloader';
+import ProfileData from './ProfileData';
+import ProfileForm from './ProfileForm';
 import s from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
-import ProfileData from './ProfileData';
-import { useState } from 'react';
-import ProfileForm from './ProfileForm';
 
 const ProfileInfo = ({
     profile, isFetchingUserProfile, updateProfileStatus, status,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { compose } from 'redux';
-import s from './Music.module.css';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 
 const Music = () => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './User.module.css';
 import { NavLink } from 'react-router-dom';
 import userImg from '../../../assets/imgs/user.png';
+import s from './User.module.css';
 
 const User = ({ user, followingInProgress, unfollow, follow }) => {
     return (
-        <div className={s.user} key={user.id}>
+        <div className={s.user}>
             <div>
                 <div>
                     <NavLink to={`/profile/${user.id}`}>

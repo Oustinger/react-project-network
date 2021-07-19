@@ -105,7 +105,11 @@ export const authAPI = {
 
 export const securityAPI = {
     getCaptchaUrl() {
-        return axiosInstance.get(`security/get-captcha-url`)
-            .then((response) => response.data);
+        try {
+            return axiosInstance.get(`security/get-captcha-url`)
+                .then((response) => response.data);
+        } catch {
+            alert('Caught http error while trying getCaptchaUrl()');
+        }
     },
 };
