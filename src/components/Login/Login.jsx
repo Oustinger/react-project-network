@@ -52,7 +52,7 @@ const Login = ({ isAuth, captchaUrl, login }) => {
 
     return <div>
         <h2>Login page</h2>
-        <LoginReduxForm onSubmit={login} captchaUrl={captchaUrl} />
+        <LoginReduxForm onSubmit={(formData) => Promise.all[login(formData)]} captchaUrl={captchaUrl} />
     </div>
 };
 

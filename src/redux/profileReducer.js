@@ -114,19 +114,17 @@ const checkUpdateProfileFormData = (formData) => {
 
     return _.merge({ ...formData, contacts: { ...formData.contacts } }, { contacts: fixedContacts });
 };
-export const updateProfileData = (formData) => (dispatch, getState) => {
+export const updateProfileData = (formData) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const checkedFromData = checkUpdateProfileFormData(formData);
 
-    profileAPI.updateData({ userId, ...checkedFromData })
-        .then((data) => {
-            if (data.resultCode === 0) {
-                dispatch(toggleProfileDataEditMode());
-                dispatch(getUserProfile(userId));
-            } else {
-                dispatch(stopSubmit('profile', getErrors(data.messages)));
-            }
-        });
+    const data = await profileAPI.updateData({ userId, ...checkedFromData });
+    if (data.resultCode === 0) {
+        dispatch(toggleProfileDataEditMode());
+        dispatch(getUserProfile(userId));
+    } else {
+        dispatch(stopSubmit('profile', getErrors(data.messages)));
+    }
 };
 
 

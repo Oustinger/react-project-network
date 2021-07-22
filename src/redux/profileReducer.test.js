@@ -8,26 +8,28 @@ const state = {
     ],
 };
 
-test('new post should be added', () => {
-    const action = addPost('newPost');
-
-    const newState = profileReducer(state, action);
+describe('add new post', () => {
+    test('new post should be added', () => {
+        const action = addPost('newPost');
     
-    expect(newState.posts.length).toBe(4);
-});
-
-test('new post message should be correct', () => {
-    const action = addPost('newPost');
-
-    const newState = profileReducer(state, action);
+        const newState = profileReducer(state, action);
+        
+        expect(newState.posts.length).toBe(4);
+    });
     
-    expect(newState.posts[3].message).toBe('newPost');
-});
-
-test('new post likes count should be correct', () => {
-    const action = addPost('newPost');
-
-    const newState = profileReducer(state, action);
+    test('new post message should be correct', () => {
+        const action = addPost('newPost');
     
-    expect(newState.posts[3].likesCount).toBe('0');
+        const newState = profileReducer(state, action);
+        
+        expect(newState.posts[3].message).toBe('newPost');
+    });
+    
+    test('new post likes count should be correct', () => {
+        const action = addPost('newPost');
+    
+        const newState = profileReducer(state, action);
+        
+        expect(newState.posts[3].likesCount).toBe('0');
+    });
 });

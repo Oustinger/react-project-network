@@ -51,18 +51,16 @@ export const getAuthUserData = () => async (dispatch) => {
 
     return data;
 };
-export const login = (formData) => (dispatch) => {
-    authAPI.login(formData)
-        .then((data) => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthUserData());
-            } else {
-                if (data.resultCode === 10) {
-                    dispatch(getCaptchaUrl());
-                }
-                dispatch(stopSubmit('login', getErrors(data.messages)));
-            }
-        });
+export const login = (formData) => async (dispatch) => {
+    const data = await authAPI.login(formData);
+    if (data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    } else {
+        if (data.resultCode === 10) {
+            dispatch(getCaptchaUrl());
+        }
+        dispatch(stopSubmit('login', getErrors(data.messages)));
+    }
 };
 export const getCaptchaUrl = () => async (dispatch) => {
     const data = await securityAPI.getCaptchaUrl();

@@ -29,7 +29,8 @@ const ProfileInfo = ({
                 <ProfileStatusWithHooks status={status} updateProfileStatus={updateProfileStatus} isOwner={isOwner} />
                 {
                     editMode ?
-                        <ProfileForm onSubmit={updateProfileData} initialValues={profile} /> :
+                        <ProfileForm onSubmit={(formData) => Promise.all[updateProfileData(formData)]}
+                            initialValues={profile} /> :
                         <ProfileData profile={profile} goToEditMode={goToEditMode} isOwner={isOwner} />
                 }
             </div>
