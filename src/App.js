@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import './App.css';
+import s from './App.module.css';
 import withSuspect from './components/common/HOC/withSuspect';
 import Preloader from './components/common/Preloader/Preloader';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -37,10 +37,10 @@ class AppComponent extends Component {
         if (!this.props.isInitialized)
             return <Preloader />;
 
-        return (<div className="app-wrapper">
+        return (<div className={s.appWrapper}>
             <HeaderContainer />
             <Navbar />
-            <div className="app-wrapper_content">
+            <div className={s.content}>
                 <Switch >
                     <Route exact path="/" render={() => <Redirect to="/profile" />} />
                     <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
@@ -54,7 +54,7 @@ class AppComponent extends Component {
                     <Route path="*" render={() => <div>404 Not found</div>} />
                 </Switch>
             </div>
-        </div>);
+        </div >);
     }
 }
 

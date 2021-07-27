@@ -1,7 +1,18 @@
-.nav {
+.navContainer {
+    position: relative;
     grid-area: n;
+}
+
+.nav {
+    --nav-padding: 20px;
+
+    position: fixed;
+    top: var(--header-height);
+    left: inherit;
+    width: calc(var(--nav-width) - var(--nav-padding) * 2);
+    height: 100%;
     background-color: #259433;
-    padding: 20px;
+    padding: var(--nav-padding);
 }
 
 .item a {

@@ -1,6 +1,16 @@
-.header {
+.headerContainer {
     grid-area: h;
+    position: relative;
+}
 
+.header {
+    position: fixed;
+    top: 0;
+    left: inherit;
+    width: 100%;
+    max-width: var(--screen-max-width);
+    height: var(--header-height);
+    z-index: 10;
     background-color: #35C0CD;
 }
 
@@ -15,5 +25,5 @@
 
 .authBlock .userImg {
     width: 30px;
-    height: ;
+    height: auto;
 }
