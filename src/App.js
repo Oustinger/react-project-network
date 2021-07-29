@@ -40,7 +40,7 @@ class AppComponent extends Component {
         return (<div className={s.appWrapper}>
             <HeaderContainer />
             <Navbar />
-            <div className={s.content}>
+            <div className={`${s.content} section`}>
                 <Switch >
                     <Route exact path="/" render={() => <Redirect to="/profile" />} />
                     <Route path="/dialogs" render={withSuspect(DialogsContainer)} />

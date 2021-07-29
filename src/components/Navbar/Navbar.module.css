@@ -4,22 +4,37 @@
 }
 
 .nav {
-    --nav-padding: 20px;
-
+    --nav-padding: 10px;
     position: fixed;
     top: var(--header-height);
     left: inherit;
     width: calc(var(--nav-width) - var(--nav-padding) * 2);
-    height: 100%;
-    background-color: #259433;
     padding: var(--nav-padding);
 }
 
-.item a {
-    text-decoration: none;
-    color: white;
+@media (min-width: 1630px) {
+    .nav {
+        padding-left: 0px;
+    }
 }
 
-.item a.active {
-    color: gold;
+.shadowSection {
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
+    padding: 1rem;
+    background-color: var(--color-bg-section);
+    border-radius: 15px;
+    box-shadow: 0 0 1rem rgb(0 0 0 / 3%);
+}
+
+.item a {
+    color: var(--color-main);
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.item a:hover, .item a.active {
+    color: var(--color-contrast);
 }

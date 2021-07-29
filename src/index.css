@@ -1,16 +1,39 @@
 body {
-    --nav-width: 14vw;
-    --header-height: 18vh;
+    --nav-width: 12vw;
+    --header-height: 10vh;
     --screen-max-width: 1600px;
-    
+    --color-text: #000;
+    --color-main: #888;
+    --color-contrast: #0055FF;
+    --color-bg-page: #f9f9fd;
+    --color-bg-section: #fff;
+    --font-main: 'Montserrat', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+    --font-site-name: 'Fredoka One', cursive;
     min-height: 100vh;
     max-width: var(--screen-max-width);
     display: flex;
     flex-direction: column;
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    background: var(--color-bg-page);
     margin: 0 auto;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1600px) {
+    body {
+        --nav-width: 192px;
+        --header-height: 90px;
+    }
+}
+
+html {
+    background: var(--color-bg-page);
 }
 
 #root {
@@ -20,3 +43,198 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.title, .banner__title, .banner__txt, h1, h2, h3 {
+    margin-bottom: 40px;
+    font-size: 56px;
+    font-family: var(--font);
+    font-weight: normal;
+}
+
+.h3 {
+    font-size: 30px;
+    margin: 20px 0px;
+}
+
+.table-resp {
+    overflow-x: auto;
+}
+
+a, .hover-highlight {
+    color: var(--color-text);
+    text-decoration: none !important;
+    transition: all ease-out 0.2s;
+}
+
+a:hover, .hover-highlight:hover {
+    color: var(--color-contrast);
+}
+
+p {
+    margin: 0px;
+}
+
+/* TEXT KIT */
+
+/* линия переноса */
+
+.wrap-line {
+    display: none;
+}
+
+@media (max-width: 1430px) AND (min-width: 992px) {
+    .wrap-line {
+        display: initial;
+    }
+}
+
+.upcase {
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ---------------------------------------------------- */
+
+/* FLEX ALIGN KIT */
+
+/* rows */
+
+.flex-row-xd-yd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.flex-row-xc-yd {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.flex-row-xc-yc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row-xb-yc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-row-xb-ys {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.flex-row-xb-ystr {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.flex-row-xs-yc {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.flex-row-xs-ys {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.flex-row-xs-ye {
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+}
+
+.flex-row-xs-yb {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.flex-row-xe-yc {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.flex-row-xe-yc {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.flex-row-xe-ye {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+/* columns */
+
+.flex-col-xc-yc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-col-xc-ys {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.flex-col-xs-ys {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.flex-col-xs-yb {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.flex-col-xs-ye {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.flex-col-xe-ye {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+/* ---------------------------------------------------- */
+
+/* FIX SCROLLING TO TOP WHEN UK-MODAL CLOSES */
+
+.uk-modal-page {
+    overflow: visible !important;
+}
+
+.uk-modal-page>body {
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+}
+
+/* ---------------------------------------------------- */
