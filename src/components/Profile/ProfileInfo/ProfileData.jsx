@@ -15,7 +15,7 @@ const ProfileData = ({ profile, goToEditMode, isOwner }) => {
             </span>
         }
         {
-            contacts.length &&
+            contacts.length > 0 &&
             <div>
                 <b>Contacts</b>
                 <div className={s.contactsList}>

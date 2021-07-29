@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, unfollow, requestUsers } from '../../redux/usersReducer';
-import Users from './Users';
-import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
+import { follow, requestUsers, unfollow } from '../../redux/usersReducer';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/usersSelectors';
+import Preloader from '../common/Preloader/Preloader';
+import { getIsAuth } from './../../redux/usersSelectors';
+import Users from './Users';
+import { withRouter } from 'react-router-dom';
 
 class UsersContainer extends React.Component {
 
@@ -13,7 +15,9 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-        const onChangePageNumber = (pageNumber) => this.props.requestUsers(pageNumber, this.props.pageSize);
+        const onChangePageNumber = (pageNumber, pagesCount) => (
+            this.props.requestUsers(pageNumber, this.props.pageSize)
+        );
 
         return <>
             {this.props.isFetching && <Preloader />}
@@ -25,6 +29,7 @@ class UsersContainer extends React.Component {
                 followingInProgress={this.props.followingInProgress}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                urlHistory={this.props.history}
                 onChangePageNumber={onChangePageNumber}
             />
         </>
@@ -48,4 +53,5 @@ export default compose(
         unfollow,
         requestUsers,
     }),
+    withRouter,
 )(UsersContainer);

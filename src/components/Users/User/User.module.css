@@ -1,9 +1,35 @@
-.user {
-    margin-bottom: 20px;
+.user__banner img {
+    border-radius: 15px;
 }
 
-.photo {
-    width: 75px;
-    height: 75px;
+.user__data {
+    display: grid;
+    grid-template-columns: 85px 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+}
+
+.user__photo {
+    position: relative;
+}
+
+.user__photo__container {
+    position: absolute;
+    padding: 5px;
+    background-color: var(--color-bg-section);
     border-radius: 50%;
+    top: -2.5rem;
+}
+
+.user__photo__container img {
+    width: 75px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.user__btn {
+    grid-column-start: 2;
+    justify-self: end;
+    align-self: center;
 }

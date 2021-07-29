@@ -13,7 +13,7 @@ const TOGGLE_FOLLOWING_PROGRESS = 'network/users/TOGGLE_FOLLOWING_PROGRESS';
 const initialState = {
     users: [],
     totalUsersCount: 0,
-    pageSize: 5,
+    pageSize: 6,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [],
@@ -92,23 +92,35 @@ export const requestUsers = (pageNumber, pageSize) => async (dispatch) => {
     dispatch(setTotalUsersCount(data.totalCount));
 };
 
-const followUnfollowFlow = async (userId, dispatch, apiMethod, onSuccess) => {
-    dispatch(toggleFollowingProgress(true, userId));
-
-    const data = await apiMethod(userId);
-
-    if (data.resultCode === 0)
-        dispatch(onSuccess(userId));
-
-    dispatch(toggleFollowingProgress(false, userId));
+const redirectToLoginPage = (urlHistory) => {
+    urlHistory.push('/login')
 };
 
-export const unfollow = (userId) => (dispatch) => {
-    followUnfollowFlow(userId, dispatch, usersAPI.unfollow, unfollowSuccess);
+const followUnfollowFlow = async (userId, urlHistory, dispatch, getState, apiMethod, onSuccess) => {
+    const isAuth = getState().auth.isAuth;
+
+    if (isAuth) {
+        dispatch(toggleFollowingProgress(true, userId));
+
+        const data = await apiMethod(userId);
+
+        if (data.resultCode === 0)
+            dispatch(onSuccess(userId));
+
+        dispatch(toggleFollowingProgress(false, userId));
+
+        return;
+    }
+
+    redirectToLoginPage(urlHistory);
 };
 
-export const follow = (userId) => (dispatch) => {
-    followUnfollowFlow(userId, dispatch, usersAPI.follow, followSuccess);
+export const unfollow = (userId, urlHistory) => (dispatch, getState) => {
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, usersAPI.unfollow, unfollowSuccess);
+};
+
+export const follow = (userId, urlHistory) => (dispatch, getState) => {
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, usersAPI.follow, followSuccess);
 };
 
 

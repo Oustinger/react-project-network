@@ -1,0 +1,17 @@
+.users {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-gap: 10px 15px;
+}
+
+@media (max-width: 769px) {
+    .users {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 426px) {
+    .users {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,6 +1,7 @@
 body {
-    --nav-width: 12vw;
+    --nav-width: 18vw;
     --header-height: 10vh;
+    --sections-padding: 1rem;
     --screen-max-width: 1600px;
     --color-text: #000;
     --color-main: #888;
@@ -29,6 +30,12 @@ body {
     body {
         --nav-width: 192px;
         --header-height: 90px;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        --nav-width: 21vw;
     }
 }
 

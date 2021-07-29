@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
@@ -40,19 +41,21 @@ class AppComponent extends Component {
         return (<div className={s.appWrapper}>
             <HeaderContainer />
             <Navbar />
-            <div className={`${s.content} section`}>
-                <Switch >
-                    <Route exact path="/" render={() => <Redirect to="/profile" />} />
-                    <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
-                    <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-                    <Route path="/users" render={() => <UsersContainer />} />
-                    <Route path="/news" render={() => <News />} />
-                    <Route path="/music" render={() => <Music />} />
-                    <Route path="/settings" render={() => <Settings />} />
-                    <Route path="/login/facebook" render={() => <div>Facebook login page</div>} />
-                    <Route path="/login" render={() => <Login />} />
-                    <Route path="*" render={() => <div>404 Not found</div>} />
-                </Switch>
+            <div className={s.content}>
+                <div className={s.contentWidthLimiter}>
+                    <Switch >
+                        <Route exact path="/" render={() => <Redirect to="/profile" />} />
+                        <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
+                        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+                        <Route path="/users" render={() => <UsersContainer />} />
+                        <Route path="/news" render={() => <News />} />
+                        <Route path="/music" render={() => <Music />} />
+                        <Route path="/settings" render={() => <Settings />} />
+                        <Route path="/login/facebook" render={() => <div>Facebook login page</div>} />
+                        <Route path="/login" render={() => <Login />} />
+                        <Route path="*" render={() => <div>404 Not found</div>} />
+                    </Switch>
+                </div>
             </div>
         </div >);
     }

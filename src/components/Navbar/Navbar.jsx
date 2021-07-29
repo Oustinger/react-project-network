@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ShadowSection from '../common/ShadowSection/ShadowSection';
 import s from './Navbar.module.css';
 
 const Navbar = () => {
     return (
         <div className={s.navContainer}>
             <nav className={s.nav}>
-                <div className={s.shadowSection}>
+                <ShadowSection width={'calc(100% - 2rem)'} height={'calc(100% - 2rem)'} padding={'1rem'}>
                     <div className={s.item}>
                         <NavLink to="/profile" activeClassName={s.active} className={`flex-row-xs-yc`}>
                             <span class="uk-margin-small-right" uk-icon="icon: user; ratio: 1.4"></span>
@@ -43,7 +44,7 @@ const Navbar = () => {
                         Settings
                     </NavLink>
                 </div> */}
-                </div>
+                </ShadowSection>
             </nav>
         </div>
     );

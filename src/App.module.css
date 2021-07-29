@@ -9,5 +9,28 @@
 
 .content {
     grid-area: c;
-    background-color: #476DD5;
+    padding: var(--sections-padding) var(--sections-padding) var(--sections-padding) 0px;
+}
+
+@media (min-width: 1630px) {
+    .content {
+        padding-right: 0px;
+    }
+}
+
+.contentWidthLimiter {
+    max-width: 75vw;
+    margin: 0 auto;
+}
+
+@media (min-width: 1600px) {
+    .contentWidthLimiter {
+        max-width: calc(1600px * 0.75);
+    }
+}
+
+@media (max-width: 1024px) {
+    .contentWidthLimiter {
+        max-width: 100%;
+    }
 }
