@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import s from './Button.module.css';
+import s from './MyButton.module.css';
 
 export default ({ children, onClick, disabled, key, className, isInvert }) => {
     return (

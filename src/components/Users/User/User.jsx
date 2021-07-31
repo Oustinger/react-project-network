@@ -2,7 +2,7 @@ import cn from 'classnames';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userImg from '../../../assets/imgs/user.png';
-import Button from '../../common/Button/Button';
+import MyButton from '../../common/MyButton/MyButton';
 import ShadowSection from '../../common/ShadowSection/ShadowSection';
 import s from './User.module.css';
 
@@ -30,15 +30,15 @@ const User = ({ user, followingInProgress, unfollow, follow, urlHistory }) => {
                     <div className={s.user__btn}>
                         {
                             user.followed ?
-                                <Button disabled={followingInProgress.some((id) => id === user.id)}
+                                <MyButton disabled={followingInProgress.some((id) => id === user.id)}
                                     onClick={() => unfollow(user.id, urlHistory)}
                                     className={'uk-button uk-button-default btn'}>
                                     Unfollow
-                                </Button> :
-                                <Button disabled={followingInProgress.some((id) => id === user.id)}
+                                </MyButton> :
+                                <MyButton disabled={followingInProgress.some((id) => id === user.id)}
                                     onClick={() => follow(user.id, urlHistory)}>
                                     Follow
-                                </Button>
+                                </MyButton>
                         }
                     </div>
                 </div>

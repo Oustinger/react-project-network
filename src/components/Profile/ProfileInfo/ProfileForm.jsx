@@ -21,50 +21,50 @@ const ProfileForm = ({ error, handleSubmit }) => {
         <div>
             {createField(Input, [maxLength100, required], 'fullName', {
                 placeholder: 'full name',
-                textBefore: 'Full name: ',
+                label: 'Full name: ',
             })}
             {createField(Input, [maxLength100, required], 'aboutMe', {
                 placeholder: 'Some info about you',
-                textBefore: 'About me: ',
+                label: 'About me: ',
             })}
             {createField(Input, [], 'lookingForAJob', {
                 type: 'checkbox',
-                textBefore: 'Are looking for a job? ',
+                label: 'Are looking for a job? ',
             })}
             {createField(Textarea, [maxLength100, required], 'lookingForAJobDescription', {
                 placeholder: 'Describe what job you are looking for and about your skills',
-                textBefore: 'Looking for a job description: ',
+                label: 'Looking for a job description: ',
             })}
             <div>
                 Your contacts:
                 <div className={s.contactsList}>
                     {createField(Input, [maxLength100], 'contacts.github', {
                         placeholder: 'github',
-                        textBefore: 'Github: ',
+                        label: 'Github: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.vk', {
                         placeholder: 'vk',
-                        textBefore: 'Vk: ',
+                        label: 'Vk: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.facebook', {
                         placeholder: 'facebook',
-                        textBefore: 'Facebook: ',
+                        label: 'Facebook: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.instagram', {
                         placeholder: 'instagram',
-                        textBefore: 'Instagram: ',
+                        label: 'Instagram: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.twitter', {
                         placeholder: 'twitter',
-                        textBefore: 'Twitter: ',
+                        label: 'Twitter: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.website', {
                         placeholder: 'website',
-                        textBefore: 'Website: ',
+                        label: 'Website: ',
                     })}
                     {createField(Input, [maxLength100], 'contacts.youtube', {
                         placeholder: 'youtube',
-                        textBefore: 'YouTube: ',
+                        label: 'YouTube: ',
                     })}
                 </div>
             </div>

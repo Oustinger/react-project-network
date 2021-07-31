@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React, { useState } from 'react';
-import Button from '../../common/Button/Button';
+import MyButton from '../../common/MyButton/MyButton';
 import s from './Paginator.module.css';
 
 const Paginator = ({ totalItemsCount, pageSize, currentPage, onChangePageNumber, portionSize = 10 }) => {
@@ -18,45 +18,45 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onChangePageNumber,
         <div className={s.paginator}>
             {
                 portionNumber > 1 &&
-                <Button onClick={() => setPortionNumber(portionNumber - 1)}
+                <MyButton onClick={() => setPortionNumber(portionNumber - 1)}
                     className={cn(s.changePageBtn, 'uk-margin-medium-right')}>
                     <span className="uk-icon" uk-icon="icon: arrow-left; ratio: 1.5"></span>
-                </Button>
+                </MyButton>
             }
             {
                 currentPage > 1 &&
-                <Button onClick={() => onChangePageNumber(currentPage - 1)}
+                <MyButton onClick={() => onChangePageNumber(currentPage - 1)}
                     className={cn(s.changePageBtn, 'uk-margin-medium-right')}>
                     <span className="uk-icon" uk-icon="icon: chevron-left; ratio: 1.5"></span>
-                </Button>
+                </MyButton>
             }
             {
                 pages.filter(pageNumber => (
                     pageNumber >= leftPortionPageNumber && pageNumber <= rightPortionPageNumber
                 )).map(pageNumber => {
                     return (
-                        <Button
+                        <MyButton
                             key={pageNumber}
                             className={cn({ [s.selected]: pageNumber === currentPage }, s.pageNumber)}
                             onClick={() => onChangePageNumber(pageNumber)}
                             isInvert={true}
-                        >{pageNumber}</Button>
+                        >{pageNumber}</MyButton>
                     );
                 })
             }
             {
                 currentPage < pagesCount &&
-                <Button onClick={() => onChangePageNumber(currentPage + 1)}
+                <MyButton onClick={() => onChangePageNumber(currentPage + 1)}
                     className={cn(s.changePageBtn, 'uk-margin-medium-left')}>
                     <span className="uk-icon" uk-icon="icon: chevron-right; ratio: 1.5"></span>
-                </Button>
+                </MyButton>
             }
             {
                 portionNumber < portionsCount &&
-                <Button onClick={() => setPortionNumber(portionNumber + 1)}
+                <MyButton onClick={() => setPortionNumber(portionNumber + 1)}
                     className={cn(s.changePageBtn, 'uk-margin-medium-left')}>
                     <span className="uk-icon" uk-icon="icon: arrow-right; ratio: 1.5"></span>
-                </Button>
+                </MyButton>
             }
         </div>
     );

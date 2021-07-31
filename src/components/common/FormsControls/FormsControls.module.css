@@ -1,6 +1,158 @@
-.formControl.error input,
-.formControl.error textarea {
-    border: 2px solid red;
+.label {
+    grid-column: labels;
+}
+
+.control {
+    grid-column: controls;
+    width: 100%;
+}
+
+.fullFiled {
+    grid-column: span 2;
+}
+
+.formControl {
+    --form-size: 1rem;
+    --form-padding-value: 1rem;
+    --form-padding: calc(var(--form-padding-value) / 2) var(--form-padding-value);
+    --form-color: var(--color-text);
+    --form-placeholder-color: #999;
+    --form-border: 0px solid var(--color-main);
+    --form-border-radius: 25px;
+    --form-textarea-border-radius: 15px;
+    --form-font-family: var(--font-main);
+    --form-font-size: .8rem;
+    --form-shadow: var(--shadow-inset);
+}
+
+::placeholder {
+    font-family: var(--form-font-family);
+    font-size: var(--form-font-size);
+    color: var(--form-placeholder-color);
+}
+
+.formControl input:focus::placeholder, .formControl textarea:focus::placeholder {
+    color: transparent;
+}
+
+.formControl textarea {
+    width: calc(100% - var(--form-padding-value) * 2);
+    height: 3rem;
+    padding: var(--form-padding);
+    resize: none;
+    font-family: var(--font-main);
+    font-size: var(--form-font-size);
+    font-family: inherit;
+    border: var(--form-border);
+    border-radius: var(--form-textarea-border-radius);
+    color: var(--form-placeholder-color);
+    box-shadow: var(--form-shadow);
+    outline: none;
+}
+
+.formControl input:not([type=checkbox], [type="radio"]), select {
+    width: calc(100% - var(--form-padding-value) * 2);
+    height: var(--form-size);
+    line-height: var(--form-size);
+    padding: var(--form-padding);
+    color: var(--form-color);
+    border: var(--form-border);
+    border-radius: var(--form-border-radius);
+    box-shadow: var(--form-shadow);
+    outline: none;
+}
+
+.formControl input[type=submit] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+.formControl label {
+    cursor: pointer;
+}
+
+.formControl input[type="checkbox"] {
+    display: none;
+}
+
+.formControl input[type="checkbox"]+label {
+    display: flex;
+}
+
+.formControl input[type="checkbox"]+label:before {
+    content: "";
+    flex-shrink: 0;
+    margin-top: 2px;
+    margin-right: .8rem;
+    padding: 1px;
+    width: 15px;
+    height: 15px;
+    border: var(--form-border);
+    border-radius: .2rem;
+    display: block;
+    box-shadow: var(--form-shadow);
+}
+
+.formControl input[type="checkbox"]:checked+label:before {
+    background-image: url(../../../assets/icons/checkbox-mark.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+}
+
+/* radio */
+
+.formControl input[type="radio"] {
+    display: none;
+}
+
+.formControl input[type="radio"]+label {
+    display: flex;
+}
+
+.formControl input[type="radio"]+label:before {
+    content: "";
+    flex-shrink: 0;
+    margin-top: 2px;
+    margin-right: 10px;
+    padding: 3px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: 1px solid var(--colorContrast);
+    box-shadow: var(--form-shadow);
+}
+
+.formControl input[type="radio"]:checked+label:before {
+    background: var(--colorContrast);
+    background-clip: content-box;
+}
+
+.formBtnContainer {
+    grid-column: span 2;
+    justify-self: end;
+}
+
+.formBtn {
+    width: 100%;
+}
+
+@media (max-width: 426px) {
+    .formBtnContainer {
+        margin-top: 1rem;
+        width: 100%;
+    }
+}
+
+.captchaImg {
+    justify-self: center;
+}
+
+/* Errors */
+
+.formControl.error input, .formControl.error textarea {
+    border: 1px solid red;
 }
 
 .errorText {
@@ -9,7 +161,8 @@
 
 .commonError {
     color: red;
-    border: 2px solid red;
+    border: 1px solid red;
+    border-radius: 25px;
     width: fit-content;
-    padding: 2px 5px;
+    padding: 2px 7px;
 }
