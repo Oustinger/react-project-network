@@ -50,7 +50,8 @@ class ProfileContainer extends React.Component {
                     isFollowed={this.props.isFollowed}
                     followingInProgress={this.props.followingInProgress}
                     follow={this.props.followProfile}
-                    unfollow={this.props.unfollowProfile} />
+                    unfollow={this.props.unfollowProfile}
+                    urlHistory={this.props.history} />
             </div>
         );
     }

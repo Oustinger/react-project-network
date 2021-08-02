@@ -18,7 +18,8 @@ const Profile = (props) => {
                 followingInProgress={props.followingInProgress}
                 unfollow={props.unfollow}
                 follow={props.follow}
-                isFollowed={props.isFollowed} />
+                isFollowed={props.isFollowed}
+                urlHistory={props.urlHistory} />
             <MyPosts posts={props.posts}
                 addPost={props.addPost}
                 resetPostForm={props.resetPostForm} />

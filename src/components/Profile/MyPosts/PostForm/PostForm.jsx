@@ -14,7 +14,7 @@ const PostForm = ({ handleSubmit }) => {
             {createField(Textarea, [maxLength150], 'postText', { placeholder: "Write a new post" })}
         </div>
         <div>
-            <FormButton isMedium={true} className={s.form__btn}>Add post</FormButton>
+            <FormButton isMedium={true} float='right'>Add post</FormButton>
         </div>
     </form>
 };

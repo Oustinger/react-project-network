@@ -1,0 +1,1 @@
+export const getPhotoLarge = (state) => state.auth.photos.large;

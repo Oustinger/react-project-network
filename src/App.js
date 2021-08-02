@@ -45,7 +45,7 @@ class AppComponent extends Component {
                 <div className={s.contentWidthLimiter}>
                     <Switch >
                         <Route exact path="/" render={() => <Redirect to="/profile" />} />
-                        <Route path="/dialogs" render={withSuspect(DialogsContainer)} />
+                        <Route path="/dialogs/:dialogId?" render={withSuspect(DialogsContainer)} />
                         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                         <Route path="/users" render={() => <UsersContainer />} />
                         <Route path="/news" render={() => <News />} />
@@ -53,7 +53,7 @@ class AppComponent extends Component {
                         <Route path="/settings" render={() => <Settings />} />
                         <Route path="/login/facebook" render={() => <div>Facebook login page</div>} />
                         <Route path="/login" render={() => <Login />} />
-                        <Route path="*" render={() => <div>404 Not found</div>} />
+                        <Route path="*" render={() => <div><h1>404 Not found</h1></div>} />
                     </Switch>
                 </div>
             </div>

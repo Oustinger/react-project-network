@@ -107,11 +107,15 @@ export const toggleFollowingProgress = (isFollowing) => ({
 });
 
 
-export const getUserProfile = (userId) => async (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch, getState) => {
+    const isAuth = getState().auth.isAuth;
     dispatch(fetchingUserProfile(true));
 
     const data = await profileAPI.getProfile(userId);
-    await dispatch(getIsFollowing(userId));
+
+    if (isAuth)
+        await dispatch(getIsFollowed(userId));
+
     dispatch(setUserProfile(data));
     dispatch(fetchingUserProfile(false));
 };
@@ -153,27 +157,36 @@ export const updateProfileData = (formData) => async (dispatch, getState) => {
     }
 };
 
-export const getIsFollowing = (userId) => async (dispatch) => {
+export const getIsFollowed = (userId) => async (dispatch) => {
     const data = await followAPI.isFollowed(userId);
     dispatch(setIsFollowed(data));
 };
-const followUnfollowFlow = async (userId, dispatch, apiMethod, onSuccess) => {
-    dispatch(toggleFollowingProgress(true));
-
-    const data = await apiMethod(userId);
-
-    if (data.resultCode === 0)
-        dispatch(onSuccess());
-
-    dispatch(toggleFollowingProgress(false));
-
-    return;
+const redirectToLoginPage = (urlHistory) => {
+    urlHistory.push('/login');
 };
-export const unfollowProfile = (userId) => (dispatch) => {
-    followUnfollowFlow(userId, dispatch, followAPI.unfollow, unfollowSuccess);
+const followUnfollowFlow = async (userId, urlHistory, dispatch, getState, apiMethod, onSuccess) => {
+    const isAuth = getState().auth.isAuth;
+
+    if (isAuth) {
+        dispatch(toggleFollowingProgress(true));
+
+        const data = await apiMethod(userId);
+
+        if (data.resultCode === 0)
+            dispatch(onSuccess());
+
+        dispatch(toggleFollowingProgress(false));
+
+        return;
+    }
+
+    redirectToLoginPage(urlHistory);
 };
-export const followProfile = (userId) => (dispatch) => {
-    followUnfollowFlow(userId, dispatch, followAPI.follow, followSuccess);
+export const unfollowProfile = (userId, urlHistory) => (dispatch, getState) => {
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, followAPI.unfollow, unfollowSuccess);
+};
+export const followProfile = (userId, urlHistory) => (dispatch, getState) => {
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, followAPI.follow, followSuccess);
 };
 
 

@@ -43,3 +43,11 @@
     text-transform: none;
     width: fit-content;
 }
+
+.btn.float-right {
+    float: right;
+}
+
+.btn.float-left {
+    float: left;
+}

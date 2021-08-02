@@ -21,7 +21,7 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => ({
     userId: state.auth.userId,
     login: state.auth.login,
-    photo: state.auth.photo,
+    photo: state.auth.photos.small,
     isAuth: state.auth.isAuth,
 });
 

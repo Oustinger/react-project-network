@@ -12,7 +12,7 @@ import cn from 'classnames';
 const ProfileInfo = ({
     profile, isFetchingUserProfile, updateProfileStatus, status,
     isOwner, savePhoto, goToEditMode, updateProfileData, editMode,
-    followingInProgress, unfollow, follow,
+    followingInProgress, unfollow, follow, urlHistory,
     isFollowed,
 }) => {
     const isProfileDataLoaded = !isFetchingUserProfile && profile;
@@ -61,18 +61,20 @@ const ProfileInfo = ({
                             </div>
                             <div>
                                 <b className={s.fullName}>{profile.fullName}</b>
-                                <ProfileStatusWithHooks status={status} updateProfileStatus={updateProfileStatus} isOwner={isOwner} />
+                                <ProfileStatusWithHooks status={status}
+                                    updateProfileStatus={updateProfileStatus}
+                                    isOwner={isOwner} />
                             </div>
                             {
                                 !isOwner &&
                                 (
                                     isFollowed ?
                                         <MyButton disabled={followingInProgress.includes(profile.userId)}
-                                            onClick={() => unfollow(profile.userId)}>
+                                            onClick={() => unfollow(profile.userId, urlHistory)}>
                                             Unfollow
                                         </MyButton> :
                                         <MyButton disabled={followingInProgress.includes(profile.userId)}
-                                            onClick={() => follow(profile.userId)}>
+                                            onClick={() => follow(profile.userId, urlHistory)}>
                                             Follow
                                         </MyButton>
                                 )

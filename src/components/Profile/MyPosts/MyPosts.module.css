@@ -2,6 +2,7 @@
     grid-area: posts;
     display: grid;
     grid-gap: 1.5rem;
+    height: fit-content;
 }
 
 .posts {
@@ -14,10 +15,6 @@
 .form {
     display: grid;
     grid-gap: .5rem;
-}
-
-.form__btn {
-    float: right;
 }
 
 /* ITEM */

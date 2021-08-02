@@ -8,7 +8,7 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
-    photo: null,
+    photos: null,
     isAuth: false,
     captchaUrl: null,
 };
@@ -26,9 +26,9 @@ const authReducer = (state = initialState, action) => {
     }
 };
 
-export const setAuthData = (userId, email, login, photo, isAuth) => ({
+export const setAuthData = (userId, email, login, photos, isAuth) => ({
     type: SET_AUTH_DATA,
-    payload: { userId, email, login, photo, isAuth },
+    payload: { userId, email, login, photos, isAuth },
 });
 export const getCaptchaUrlSuccess = (captchaUrl) => ({
     type: GET_CAPTCHA_URL_SUCCESS,
@@ -45,7 +45,7 @@ export const getAuthUserData = () => async (dispatch) => {
         const login = data.data.login;
 
         const profileData = await profileAPI.getProfile(userId);
-        dispatch(setAuthData(userId, email, login, profileData.photos.small, true));
+        dispatch(setAuthData(userId, email, login, profileData.photos, true));
         return profileData;
     }
 

@@ -93,7 +93,7 @@ export const requestUsers = (pageNumber, pageSize) => async (dispatch) => {
 };
 
 const redirectToLoginPage = (urlHistory) => {
-    urlHistory.push('/login')
+    urlHistory.push('/login');
 };
 
 const followUnfollowFlow = async (userId, urlHistory, dispatch, getState, apiMethod, onSuccess) => {

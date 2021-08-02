@@ -1,14 +1,22 @@
+import cn from 'classnames';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import userImg from '../../../assets/imgs/user.png';
 import s from './../Dialogs.module.css';
 
-const DialogItem = ({ id, name }) => {
+const DialogItem = ({ id, name, activeId }) => {
     const path = '/dialogs/' + id;
 
     return (
-        <div className={s.dialog} >
-            <NavLink to={path}>{name}</NavLink>
-        </div>
+        <NavLink to={path} className={cn(
+            s.dialogContainer,
+            { [s.active]: activeId === id }
+        )} activeClassName={s.active}>
+            <div className={s.dialog} >
+                <img src={userImg} />
+                <span>{name}</span>
+            </div>
+        </NavLink>
     );
 };
 

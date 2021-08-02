@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import s from './MyButton.module.css';
 
-export default ({ children, onClick, disabled, key, className, isInvert, isSmall, isMedium }) => {
+export default ({ children, onClick, disabled, key, className, isInvert, isSmall, isMedium, float }) => {
     return (
         <div className={cn(
             'uk-button',
@@ -11,6 +11,7 @@ export default ({ children, onClick, disabled, key, className, isInvert, isSmall
             { [s.invert]: isInvert },
             { [s.small]: isSmall },
             { [s.medium]: isMedium },
+            { [s[`float-${float}`]]: float },
         )}
             disabled={disabled}
             onClick={onClick}
