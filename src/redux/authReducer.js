@@ -8,7 +8,10 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
-    photos: null,
+    photos: {
+        large: null,
+        small: null,
+    },
     isAuth: false,
     captchaUrl: null,
 };
