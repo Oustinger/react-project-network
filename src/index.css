@@ -6,6 +6,7 @@ html {
     --color-main: #000;
     --color-text: #888;
     --color-contrast: #0055FF;
+    --color-contrast-1: #61dafb;
     --color-bg-page: #f9f9fd;
     --color-bg-section: #fff;
     --font-main: 'Montserrat', sans-serif;
@@ -155,6 +156,12 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+}
+
+.flex-row-xb-ye {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .flex-row-xs-yc {

@@ -10,6 +10,7 @@ import website from '../../../assets/icons/socials/website.png';
 import youtube from '../../../assets/icons/socials/youtube.png';
 import MyButton from '../../common/MyButton/MyButton';
 import s from './ProfileInfo.module.css';
+import styleProfile from '../Profile.module.css';
 
 const ProfileData = ({ profile, goToEditMode, isOwner }) => {
     const contacts = Object.entries(profile.contacts).filter(([name, address]) => address);
@@ -20,8 +21,8 @@ const ProfileData = ({ profile, goToEditMode, isOwner }) => {
 
     return <div>
         <div className={'flex-row-xb-ys'}>
-            <h3 className={s.data__header}><b>About</b></h3>
-            {isOwner && <MyButton onClick={goToEditMode} isInvert={true} isMinContent={true}>Edit</MyButton>}
+            <h3 className={styleProfile.profile__blockHeader}><b>About</b></h3>
+            {isOwner && <MyButton onClick={goToEditMode} isInvert={true} isSmall={true}>Edit</MyButton>}
         </div>
         <ul className={cn(`uk-list uk-list-divider`, s.data__itemsContainer)}>
             {profile.aboutMe && <div>{profile.aboutMe}</div>}

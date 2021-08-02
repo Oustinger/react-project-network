@@ -89,7 +89,7 @@ const ProfileForm = ({ error, handleSubmit }) => {
                 </div>
             </div>
             <div>
-                <FormButton isInvert={true} isMinContent={true} className={s.form__btn}>Save</FormButton>
+                <FormButton isInvert={true} isSmall={true} className={s.form__btn}>Save</FormButton>
             </div>
         </div>
     </form>

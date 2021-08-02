@@ -1,17 +1,20 @@
+import cn from 'classnames';
 import React from "react";
 import { reduxForm } from 'redux-form';
-import { maxLengthCreator, required } from "../../../../utils/validators";
-import { createField, Textarea } from '../../../common/FormsControls/FormsControls';
+import { maxLengthCreator } from "../../../../utils/validators";
+import { createField, FormButton, Textarea } from '../../../common/FormsControls/FormsControls';
+import stylesFormsControls from '../../../common/FormsControls/FormsControls.module.css';
+import s from '../MyPosts.module.css';
 
-const maxLength5 = maxLengthCreator(5);
+const maxLength150 = maxLengthCreator(150);
 
 const PostForm = ({ handleSubmit }) => {
-    return <form onSubmit={handleSubmit}>
+    return <form onSubmit={handleSubmit} className={cn(stylesFormsControls.form, s.form)}>
         <div>
-            {createField(Textarea, [maxLength5], 'postText', { placeholder: "Write a new post" })}
+            {createField(Textarea, [maxLength150], 'postText', { placeholder: "Write a new post" })}
         </div>
         <div>
-            <button>Add post</button>
+            <FormButton isMedium={true} className={s.form__btn}>Add post</FormButton>
         </div>
     </form>
 };
