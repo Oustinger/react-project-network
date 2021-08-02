@@ -43,6 +43,18 @@ export const usersAPI = {
             .then((response) => response.data);
     },
 
+    getProfile(userId) {
+        console.warn('Obsolete method. Please use ProfileAPI');
+        return profileAPI.getProfile(userId);
+    },
+};
+
+export const followAPI = {
+    isFollowed(userId) {
+        return axiosInstance.get(`follow/${userId}`)
+            .then((response) => response.data);
+    },
+
     follow(userId) {
         return axiosInstance.post(`follow/${userId}`)
             .then((response) => response.data);
@@ -51,11 +63,6 @@ export const usersAPI = {
     unfollow(userId) {
         return axiosInstance.delete(`follow/${userId}`)
             .then((response) => response.data);
-    },
-
-    getProfile(userId) {
-        console.warn('Obsolete method. Please use ProfileAPI');
-        return profileAPI.getProfile(userId);
     },
 };
 

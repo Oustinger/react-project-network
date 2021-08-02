@@ -8,7 +8,7 @@
     top: var(--header-height);
     left: inherit;
     width: calc(var(--nav-width) - var(--sections-padding) * 2);
-    padding: calc(var(--sections-padding) / 2) var(--sections-padding);
+    padding: calc(var(--sections-padding) * 0.6) var(--sections-padding);
 }
 
 @media (min-width: 1630px) {

@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
+import { getFollowingInProgress } from '../../redux/usersSelectors';
 import {
-    addPost, getProfileStatus, getUserProfile, resetPostForm,
-    setCurrentUserId, updateProfileStatus, savePhoto, toggleProfileDataEditMode,
-    updateProfileData
+    addPost, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode,
+    updateProfileData, updateProfileStatus, unfollowProfile, followProfile
 } from './../../redux/profileReducer';
+import { getIsFollowed } from './../../redux/profileSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Profile from './Profile';
 
@@ -45,7 +46,11 @@ class ProfileContainer extends React.Component {
                     savePhoto={this.props.savePhoto}
                     profileDataEditMode={this.props.profileDataEditMode}
                     toggleProfileDataEditMode={this.props.toggleProfileDataEditMode}
-                    updateProfileData={this.props.updateProfileData} />
+                    updateProfileData={this.props.updateProfileData}
+                    isFollowed={this.props.isFollowed}
+                    followingInProgress={this.props.followingInProgress}
+                    follow={this.props.followProfile}
+                    unfollow={this.props.unfollowProfile} />
             </div>
         );
     }
@@ -58,7 +63,9 @@ const mapStateToProps = (state) => ({
     isFetchingUserProfile: state.profilePage.isFetchingUserProfile,
     prevUserId: state.profilePage.currentUserId,
     authUserId: state.auth.userId,
-    profileDataEditMode: state.profilePage.profileDataEditMode
+    profileDataEditMode: state.profilePage.profileDataEditMode,
+    isFollowed: getIsFollowed(state),
+    followingInProgress: getFollowingInProgress(state),
 });
 
 export default compose(
@@ -67,7 +74,8 @@ export default compose(
         updateProfileStatus, resetPostForm,
         addPost, setCurrentUserId,
         savePhoto, toggleProfileDataEditMode,
-        updateProfileData
+        updateProfileData, followProfile,
+        unfollowProfile,
     }),
     withRouter,
     withAuthRedirect,

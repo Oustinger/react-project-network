@@ -107,6 +107,15 @@ p {
 
 /* ---------------------------------------------------- */
 
+/* GRID ALIGN KIT */
+
+.grid-items-center {
+    display: grid;
+    place-items: center;
+}
+
+/* ---------------------------------------------------- */
+
 /* FLEX ALIGN KIT */
 
 /* rows */

@@ -1,0 +1,1 @@
+export const getIsFollowed = (state) => state.profilePage.isFollowed;

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import s from './ProfileStatus.module.css';
+import styleFormsControls from '../../../common/FormsControls/FormsControls.module.css';
 
 const ProfileStatus = (props) => {
     const [editMode, setEditMode] = useState(false);
@@ -19,14 +21,15 @@ const ProfileStatus = (props) => {
         setStatus(e.currentTarget.value);
     };
 
-    return <div>
+    return <div className={styleFormsControls.formControl}>
         {
             !editMode ?
                 props.isOwner ?
                     <span onDoubleClick={toggleEditMode}>{status || '-set-status-'}</span>
                     : null
                 : <input onChange={onStatusChange} onBlur={toggleEditMode}
-                    autoFocus={true} value={status} />
+                    autoFocus={true} value={status}
+                    className={s.input} onKeyUp={(event) => event.keyCode === 13 ? toggleEditMode() : null} />
         }
     </div>;
 }

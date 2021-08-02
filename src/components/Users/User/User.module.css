@@ -14,7 +14,7 @@
     position: relative;
 }
 
-.user__photo__container {
+.user__photo__imgContainer {
     position: absolute;
     padding: 5px;
     background-color: var(--color-bg-section);
@@ -22,7 +22,7 @@
     top: -2.5rem;
 }
 
-.user__photo__container img {
+.user__photo__imgContainer img {
     width: 75px;
     height: auto;
     border-radius: 50%;

@@ -17,7 +17,7 @@ const User = ({ user, followingInProgress, unfollow, follow, urlHistory }) => {
                 </div>
                 <div className={cn(s.user__data)}>
                     <div className={s.user__photo}>
-                        <div className={s.user__photo__container}>
+                        <div className={s.user__photo__imgContainer}>
                             <img src={user.photos.small || userImg} />
                         </div>
                     </div>
@@ -31,8 +31,7 @@ const User = ({ user, followingInProgress, unfollow, follow, urlHistory }) => {
                         {
                             user.followed ?
                                 <MyButton disabled={followingInProgress.some((id) => id === user.id)}
-                                    onClick={() => unfollow(user.id, urlHistory)}
-                                    className={'uk-button uk-button-default btn'}>
+                                    onClick={() => unfollow(user.id, urlHistory)}>
                                     Unfollow
                                 </MyButton> :
                                 <MyButton disabled={followingInProgress.some((id) => id === user.id)}

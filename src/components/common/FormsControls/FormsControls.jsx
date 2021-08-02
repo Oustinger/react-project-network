@@ -25,17 +25,17 @@ export const Textarea = (props) => {
 };
 
 export const Input = (props) => {
-    const { input, meta, textAfter, label, ...restProps } = props;
+    const { input, meta, textafter, label, otherProps, ...restProps } = props;
     // важно, чтобы obj: meta не попал в HTML input/textarea
 
     return <FormControl {...props}>
-        <input id={input.name} {...input} {...restProps} />
+        <input id={input.name} {...input} {...otherProps} {...restProps} />
         {
             !label ?
-                <label for={input.name}>
-                    {textAfter}
+                <label htmlFor={input.name}>
+                    {textafter}
                 </label>
-                : textAfter
+                : textafter
         }
     </FormControl>
 };
@@ -43,7 +43,8 @@ export const Input = (props) => {
 export const createField = (component, validate, name, { type, placeholder, textAfter, label }) => {
     const fieldControl = (<>
         <Field component={component} name={name} placeholder={placeholder}
-            validate={validate} type={type} textAfter={textAfter} label={label} />
+            validate={validate} type={type} textafter={textAfter}
+            label={label} />
     </>);
 
     return <>

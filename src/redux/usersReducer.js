@@ -1,5 +1,5 @@
 import { updateObjectInArray } from '../utils/objectHelpers';
-import { usersAPI } from './../api/api';
+import { followAPI, usersAPI } from './../api/api';
 
 const FOLLOW = 'network/users/FOLLOW';
 const UNFOLLOW = 'network/users/UNFOLLOW';
@@ -116,11 +116,11 @@ const followUnfollowFlow = async (userId, urlHistory, dispatch, getState, apiMet
 };
 
 export const unfollow = (userId, urlHistory) => (dispatch, getState) => {
-    followUnfollowFlow(userId, urlHistory, dispatch, getState, usersAPI.unfollow, unfollowSuccess);
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, followAPI.unfollow, unfollowSuccess);
 };
 
 export const follow = (userId, urlHistory) => (dispatch, getState) => {
-    followUnfollowFlow(userId, urlHistory, dispatch, getState, usersAPI.follow, followSuccess);
+    followUnfollowFlow(userId, urlHistory, dispatch, getState, followAPI.follow, followSuccess);
 };
 
 
