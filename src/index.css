@@ -1,10 +1,10 @@
-body {
+html {
     --nav-width: 18vw;
     --header-height: 10vh;
     --sections-padding: 1rem;
     --screen-max-width: 1600px;
-    --color-text: #000;
-    --color-main: #888;
+    --color-main: #000;
+    --color-text: #888;
     --color-contrast: #0055FF;
     --color-bg-page: #f9f9fd;
     --color-bg-section: #fff;
@@ -13,36 +13,37 @@ body {
     --font-site-name: 'Fredoka One', cursive;
     --shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
     --shadow-inset: 0px 0px 6px 0px rgba(0, 0, 0, 0.1) inset;
-    min-height: 100vh;
-    max-width: var(--screen-max-width);
-    display: flex;
-    flex-direction: column;
     color: var(--color-text);
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-family: var(--font-main);
+    font-weight: 500;
     line-height: 1.5;
     background: var(--color-bg-page);
-    margin: 0 auto;
-    font-family: var(--font-main);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 1600px) {
-    body {
+    html {
         --nav-width: 192px;
         --header-height: 90px;
     }
 }
 
 @media (max-width: 1024px) {
-    body {
+    html {
         --nav-width: 21vw;
     }
 }
 
-html {
+body {
+    min-height: 100vh;
+    max-width: var(--screen-max-width);
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text);
     background: var(--color-bg-page);
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -70,7 +71,7 @@ code {
 }
 
 a, .hover-highlight {
-    color: var(--color-text);
+    color: var(--color-main);
     text-decoration: none !important;
     transition: all ease-out 0.2s;
 }

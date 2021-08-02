@@ -18,7 +18,7 @@
 }
 
 .btn.invert {
-    color: var(--color-text);
+    color: var(--color-main);
     background-color: var(--color-bg-section);
     border: 1px solid var(--color-contrast);
 }
@@ -27,4 +27,11 @@
     color: var(--color-bg-section);
     background-color: var(--color-contrast);
     border: 1px solid transparent;
+}
+
+.btn.minContent {
+    line-height: initial;
+    padding: .4rem 1rem;
+    text-transform: none;
+    width: fit-content;
 }

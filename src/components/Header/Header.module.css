@@ -38,11 +38,11 @@
 .authBlock__logout {
     font-weight: 700;
     font-size: 1.1rem;
-    color: var(--color-main)
+    color: var(--color-text)
 }
 
 .authBlock_highlighter {
-    color: var(--color-main);
+    color: var(--color-text);
 }
 
 .authBlock_highlighter:hover {
@@ -50,6 +50,7 @@
 }
 
 .authBlock__btn {
+    font-size: 1.1rem;
     font-weight: 600;
     text-transform: none;
     border: 0px;

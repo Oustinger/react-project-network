@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../utils/validators";
 import { ArrangeFormFields, createField, FormButton, Input } from "../common/FormsControls/FormsControls";
-import stylesFormControls from '../common/FormsControls/FormsControls.module.css';
+import stylesFormsControls from '../common/FormsControls/FormsControls.module.css';
 import ShadowSection from '../common/ShadowSection/ShadowSection';
 import { login } from './../../redux/authReducer';
 import s from './Login.module.css';
@@ -16,10 +16,10 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
     if (!error) {
         (() => { })();
     };
-    return <form onSubmit={handleSubmit} className={s.form}>
+    return <form onSubmit={handleSubmit} className={cn(s.form, stylesFormsControls.form)}>
         <ShadowSection>
             <ArrangeFormFields>
-                <h2 className={stylesFormControls.fullFiled}>Login page</h2>
+                <h2 className={stylesFormsControls.fullFiled}>Login page</h2>
                 {createField(Input, [required, maxLength30], 'email', {
                     placeholder: "Email",
                     label: 'Email',
@@ -37,7 +37,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
                 })}
                 {
                     captchaUrl &&
-                    <img src={captchaUrl} className={cn(stylesFormControls.fullFiled, stylesFormControls.captchaImg)} />
+                    <img src={captchaUrl} className={cn(stylesFormsControls.fullFiled, stylesFormsControls.captchaImg)} />
                 }
                 {
                     captchaUrl &&
@@ -48,7 +48,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
                     })
                 }
                 {
-                    error && <div className={cn(stylesFormControls.commonError, stylesFormControls.fullFiled)}>
+                    error && <div className={cn(stylesFormsControls.commonError, stylesFormsControls.fullFiled)}>
                         {error}
                     </div>
                 }

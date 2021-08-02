@@ -20,7 +20,7 @@
     grid-template-rows: 1fr;
     grid-gap: 1rem;
     padding: 1rem;
-    min-height: calc(var(--user-photo-size) * 0.5);
+    min-height: calc(var(--user-photo-size) * 0.6);
 }
 
 .userPhoto {
@@ -82,15 +82,75 @@
 }
 
 .fullName {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    color: var(--color-main);
 }
 
 /* About */
 
 .about {
     grid-area: about;
+    font-size: 1rem;
+    height: fit-content;
 }
 
-.contactsList {
-    margin-left: 15px;
+.about b {
+    color: var(--color-main);
+}
+
+.data__contactsList__imgContainer {
+    width: 30px;
+    margin: .3rem;
+}
+
+.data__contactsList__imgContainer img {
+    margin: 5%;
+    width: 90%;
+    transition: all ease-out .2s;
+}
+
+.data__contactsList__imgContainer:hover img {
+    margin: 0;
+    width: 100%;
+}
+
+.data__header {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+}
+
+.data__itemsContainer {
+    margin: 0;
+}
+
+.data__lookingJob__text {
+    margin-right: 0.3rem;
+}
+
+.data__lookingJob__checkMark {
+    width: 1.3rem;
+    height: auto;
+}
+
+/* Form */
+
+.form__fieldsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
+}
+
+.form__contactsFields {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 1.5rem;
+}
+
+.form__btn {
+    font-size: 1rem;
+    float: right;
+}
+
+.form__divider {
+    margin: 0.3rem 0;
 }

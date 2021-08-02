@@ -74,7 +74,7 @@ export const FormButton = (props) => {
     return <div className={s.formBtnContainer}>
         <input id="submit" type="submit" style={{ 'display': 'none' }} />
         <label for="submit">
-            <MyButton {...props} className={s.formBtn}>
+            <MyButton {...props} className={cn(s.formBtn, props.className)}>
                 {props.children}
             </MyButton>
         </label>
