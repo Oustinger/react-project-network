@@ -6,7 +6,7 @@ import MessageItem from './MessageItem/MessageItem';
 import ShadowSection from '../common/ShadowSection/ShadowSection';
 
 const Dialogs = ({ dialogs, findCompanion, messages, onFormSubmit, photoMe, activeDialogId }) => {
-    const companionName = findCompanion(
+    const companionName = activeDialogId && findCompanion(
         dialogs.find(
             ({ id }) => id === activeDialogId
         ).companions[0]

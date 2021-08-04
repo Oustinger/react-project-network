@@ -73,7 +73,7 @@ export const ArrangeFormFields = ({ children }) => {
 export const FormButton = (props) => {
     return <div className={s.formBtnContainer}>
         <input id="submit" type="submit" style={{ 'display': 'none' }} />
-        <label for="submit">
+        <label htmlFor="submit">
             <MyButton {...props} className={cn(s.formBtn, props.className)}>
                 {props.children}
             </MyButton>

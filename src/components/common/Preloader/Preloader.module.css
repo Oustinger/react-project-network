@@ -4,3 +4,16 @@
     background-color: inherit;
     opacity: 0.7;
 }
+
+.allBlockSizeContainer {
+    position: sticky;
+    width: inherit;
+    height: inherit;
+}
+
+.allBlockSize {
+    position: absolute;
+    top: 0;
+    background-color: var(--color-bg-page);
+    z-index: 9;
+}

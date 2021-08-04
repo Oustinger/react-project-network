@@ -24,6 +24,17 @@ const initialState = {
         { id: 1, dialogId: 1, authorId: 1, message: 'Hi' },
         { id: 2, dialogId: 1, authorId: 1, message: 'How are you?' },
         { id: 3, dialogId: 1, authorId: 0, message: 'Hi! I\'m OK!' },
+        { id: 4, dialogId: 2, authorId: 2, message: 'Your profile page is awesome!' },
+        { id: 5, dialogId: 2, authorId: 0, message: 'Thanks)' },
+        { id: 6, dialogId: 3, authorId: 0, message: 'Hi! What\'s up?)' },
+        { id: 7, dialogId: 4, authorId: 4, message: 'Hi' },
+        { id: 8, dialogId: 4, authorId: 4, message: 'We are going to the lake tomorrow' },
+        { id: 9, dialogId: 4, authorId: 4, message: 'Do you want to join us?' },
+        { id: 10, dialogId: 4, authorId: 0, message: 'Hi!' },
+        { id: 11, dialogId: 4, authorId: 0, message: 'Yeah, of course' },
+        { id: 12, dialogId: 4, authorId: 0, message: 'It would be great)' },
+        { id: 13, dialogId: 4, authorId: 4, message: 'Super!' },
+        { id: 14, dialogId: 4, authorId: 4, message: 'Ok, see you at our house at 9:30 tomorrow' },
     ],
 };
 

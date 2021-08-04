@@ -20,8 +20,8 @@ const MyPosts = React.memo(({ posts, addPost, resetPostForm }) => {
             <div className={s.posts}>
                 {
                     posts.map(({ id, message, likesCount }) =>
-                        <ShadowSection padding=".9rem">
-                            <Post message={message} likesCount={likesCount} key={id} />
+                        <ShadowSection padding=".9rem" key={id}>
+                            <Post message={message} likesCount={likesCount} />
                         </ShadowSection>
                     )
                 }

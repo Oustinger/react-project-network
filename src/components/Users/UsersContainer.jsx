@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { follow, requestUsers, unfollow } from '../../redux/usersReducer';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/usersSelectors';
 import Preloader from '../common/Preloader/Preloader';
-import { getIsAuth } from './../../redux/usersSelectors';
 import Users from './Users';
-import { withRouter } from 'react-router-dom';
-
 class UsersContainer extends React.Component {
 
     componentDidMount() {
@@ -15,23 +13,29 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-        const onChangePageNumber = (pageNumber, pagesCount) => (
+        const onChangePageNumber = (pageNumber) => (
             this.props.requestUsers(pageNumber, this.props.pageSize)
         );
 
+        const users = <Users
+            users={this.props.users}
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            currentPage={this.props.currentPage}
+            followingInProgress={this.props.followingInProgress}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
+            urlHistory={this.props.history}
+            onChangePageNumber={onChangePageNumber}
+        />;
+
         return <>
-            {this.props.isFetching && <Preloader />}
-            <Users
-                users={this.props.users}
-                totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                followingInProgress={this.props.followingInProgress}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-                urlHistory={this.props.history}
-                onChangePageNumber={onChangePageNumber}
-            />
+            {
+                this.props.isFetching ? <Preloader isAllBlockSize={true}>
+                    {users}
+                </Preloader>
+                    : users
+            }
         </>
     }
 };

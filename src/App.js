@@ -36,7 +36,7 @@ class AppComponent extends Component {
 
     render() {
         if (!this.props.isInitialized)
-            return <Preloader />;
+            return <Preloader isAllBlockSize={true} />;
 
         return (<div className={s.appWrapper}>
             <HeaderContainer />
