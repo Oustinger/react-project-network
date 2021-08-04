@@ -7,10 +7,9 @@ import {
     addPost, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode,
     updateProfileData, updateProfileStatus, unfollowProfile, followProfile
 } from './../../redux/profileReducer';
-import { getIsFollowed } from './../../redux/profileSelectors';
+import { getIsFollowed, getWallpaper } from './../../redux/profileSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Profile from './Profile';
-
 class ProfileContainer extends React.Component {
     getCurrentUserId() {
         return Number.parseInt(this.props.match.params.userId) || this.props.authUserId;
@@ -51,7 +50,8 @@ class ProfileContainer extends React.Component {
                     followingInProgress={this.props.followingInProgress}
                     follow={this.props.followProfile}
                     unfollow={this.props.unfollowProfile}
-                    urlHistory={this.props.history} />
+                    urlHistory={this.props.history}
+                    wallpaper={this.props.wallpaper} />
             </div>
         );
     }
@@ -67,6 +67,7 @@ const mapStateToProps = (state) => ({
     profileDataEditMode: state.profilePage.profileDataEditMode,
     isFollowed: getIsFollowed(state),
     followingInProgress: getFollowingInProgress(state),
+    wallpaper: getWallpaper(state),
 });
 
 export default compose(

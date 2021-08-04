@@ -4,12 +4,12 @@
     grid-area: main;
 }
 
-.bannerBlock {
+.wallpaperBlock {
     border-radius: 15px;
     width: 100%;
     height: 40vh;
     max-height: 300px;
-    background: center / cover no-repeat url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+    background: center / cover no-repeat;
 }
 
 .descriptionBlock {

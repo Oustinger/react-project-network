@@ -19,6 +19,7 @@ const Profile = (props) => {
                 unfollow={props.unfollow}
                 follow={props.follow}
                 isFollowed={props.isFollowed}
+                wallpaper={props.wallpaper}
                 urlHistory={props.urlHistory} />
             <MyPosts posts={props.posts}
                 addPost={props.addPost}

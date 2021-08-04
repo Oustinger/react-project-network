@@ -1,5 +1,6 @@
 import { updateObjectInArray } from '../utils/objectHelpers';
 import { followAPI, usersAPI } from './../api/api';
+import { addUsersWallpapers } from './../utils/userWallpaperHelper';
 
 const FOLLOW = 'network/users/FOLLOW';
 const UNFOLLOW = 'network/users/UNFOLLOW';
@@ -88,7 +89,8 @@ export const requestUsers = (pageNumber, pageSize) => async (dispatch) => {
 
     dispatch(toggleIsFetching(false));
     dispatch(setCurrentPage(pageNumber));
-    dispatch(setUsers(data.items));
+    const usersItems = addUsersWallpapers(data.items);
+    dispatch(setUsers(usersItems));
     dispatch(setTotalUsersCount(data.totalCount));
 };
 

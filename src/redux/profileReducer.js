@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { reset as resetForm, stopSubmit } from 'redux-form';
 import { profileAPI } from "../api/api";
+import { addProfileWallpaper } from '../utils/userWallpaperHelper';
 import { getErrors, followAPI } from './../api/api';
 
 const ADD_POST = 'network/profile/ADD-POST';
@@ -116,7 +117,9 @@ export const getUserProfile = (userId) => async (dispatch, getState) => {
     if (isAuth)
         await dispatch(getIsFollowed(userId));
 
-    dispatch(setUserProfile(data));
+    const loadedUsers = getState().usersPage.users;
+    const profileData = addProfileWallpaper(data, loadedUsers);
+    dispatch(setUserProfile(profileData));
     dispatch(fetchingUserProfile(false));
 };
 export const getProfileStatus = (userId) => async (dispatch) => {

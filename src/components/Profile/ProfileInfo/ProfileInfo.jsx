@@ -13,7 +13,7 @@ const ProfileInfo = ({
     profile, isFetchingUserProfile, updateProfileStatus, status,
     isOwner, savePhoto, goToEditMode, updateProfileData, editMode,
     followingInProgress, unfollow, follow, urlHistory,
-    isFollowed,
+    isFollowed, wallpaper,
 }) => {
     const isProfileDataLoaded = !isFetchingUserProfile && profile;
 
@@ -27,7 +27,8 @@ const ProfileInfo = ({
             <ShadowSection padding=".9rem"> {
                 isProfileDataLoaded ?
                     <div>
-                        <div className={s.bannerBlock}></div>
+                        <div className={s.wallpaperBlock}
+                            style={{ backgroundImage: `url(${wallpaper})` }}></div>
                         <div className={s.descriptionBlock}>
                             <div className={s.userPhoto}>
                                 <div className={cn(
