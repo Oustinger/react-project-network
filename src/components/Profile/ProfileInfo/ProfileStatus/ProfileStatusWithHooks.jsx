@@ -21,17 +21,23 @@ const ProfileStatus = (props) => {
         setStatus(e.currentTarget.value);
     };
 
-    return <div className={styleFormsControls.formControl}>
-        {
-            !editMode ?
-                props.isOwner ?
-                    <span onDoubleClick={toggleEditMode}>{status || '-set-status-'}</span>
-                    : null
-                : <input onChange={onStatusChange} onBlur={toggleEditMode}
-                    autoFocus={true} value={status}
-                    className={s.input} onKeyUp={(event) => event.keyCode === 13 ? toggleEditMode() : null} />
-        }
-    </div>;
+    return (
+        <div className={styleFormsControls.form}>
+            <div className={styleFormsControls.formControl}>
+                {
+                    !editMode ?
+                        props.isOwner ?
+                            <span onDoubleClick={toggleEditMode} className={s.statusText} uk-tooltip="Click double">
+                                {status || '-set-status-'}
+                            </span>
+                            : <span>{status}</span>
+                        : <input onChange={onStatusChange} onBlur={toggleEditMode}
+                            autoFocus={true} value={status}
+                            className={s.input} onKeyUp={(event) => event.keyCode === 13 ? toggleEditMode() : null} />
+                }
+            </div>
+        </div>
+    );
 }
 
 export default ProfileStatus;

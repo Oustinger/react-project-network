@@ -3,20 +3,23 @@ import React from 'react';
 import preloader from '../../../assets/preloader.svg';
 import s from './Preloader.module.css';
 
-const Preloader = ({ isAllBlockSize, children }) => {
+const Preloader = ({ isAllBlockSize, children, position }) => {
+    const classNames = cn(
+        s.preloader,
+        'flex-col-xc-yc',
+        { [s.allBlockSize]: isAllBlockSize },
+        { [s[`position-${position}`]]: isAllBlockSize },
+    );
+
     return (
         <>
             {
                 !isAllBlockSize ?
-                    <div className={cn(s.preloader, 'flex-col-xc-yc')}>
+                    <div className={classNames}>
                         <img className={s.preloader__img} src={preloader} />
                     </div>
                     : <div className={s.allBlockSizeContainer}>
-                        <div className={cn(
-                            s.preloader,
-                            s.allBlockSize,
-                            'flex-col-xc-yc',
-                        )}>
+                        <div className={classNames}>
                             <img className={s.preloader__img} src={preloader} />
                         </div>
                         {children}

@@ -36,14 +36,14 @@ class AppComponent extends Component {
 
     render() {
         if (!this.props.isInitialized)
-            return <Preloader isAllBlockSize={true} />;
+            return <Preloader isAllBlockSize={true} position='relative' />;
 
         return (<div className={s.appWrapper}>
             <HeaderContainer />
             <Navbar />
             <div className={s.content}>
                 <div className={s.contentWidthLimiter}>
-                    <Switch >
+                    <Switch>
                         <Route exact path="/" render={() => <Redirect to="/profile" />} />
                         <Route path="/dialogs/:dialogId?" render={withSuspect(DialogsContainer)} />
                         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />

@@ -31,7 +31,9 @@ class UsersContainer extends React.Component {
 
         return <>
             {
-                this.props.isFetching ? <Preloader isAllBlockSize={true}>
+                this.props.isFetching ? <Preloader isAllBlockSize={true}
+                    position={this.props.users.length > 0 ? 'absolute' : 'relative'}
+                >
                     {users}
                 </Preloader>
                     : users

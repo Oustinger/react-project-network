@@ -17,3 +17,11 @@
     background-color: var(--color-bg-page);
     z-index: 9;
 }
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+}

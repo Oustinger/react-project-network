@@ -1,3 +1,7 @@
 .input {
     width: fit-content !important;
 }
+
+.statusText {
+    cursor: pointer;
+}
