@@ -12,8 +12,8 @@ import cn from 'classnames';
 const ProfileInfo = ({
     profile, isFetchingUserProfile, updateProfileStatus, status,
     isOwner, savePhoto, goToEditMode, updateProfileData, editMode,
-    followingInProgress, unfollow, follow, urlHistory,
-    isFollowed, wallpaper,
+    isFollowingInProgress, unfollow, follow, urlHistory,
+    isFollowed, wallpaper, isUploadingDataInProgress,
 }) => {
     const isProfileDataLoaded = !isFetchingUserProfile && profile;
 
@@ -70,11 +70,11 @@ const ProfileInfo = ({
                                 !isOwner &&
                                 (
                                     isFollowed ?
-                                        <MyButton disabled={followingInProgress.includes(profile.userId)}
+                                        <MyButton disabled={isFollowingInProgress}
                                             onClick={() => unfollow(profile.userId, urlHistory)}>
                                             Unfollow
                                         </MyButton> :
-                                        <MyButton disabled={followingInProgress.includes(profile.userId)}
+                                        <MyButton disabled={isFollowingInProgress}
                                             onClick={() => follow(profile.userId, urlHistory)}>
                                             Follow
                                         </MyButton>
@@ -92,8 +92,8 @@ const ProfileInfo = ({
                         {
                             editMode ?
                                 <ProfileForm onSubmit={(formData) => Promise.all[updateProfileData(formData)]}
-                                    initialValues={profile} /> :
-                                <ProfileData profile={profile} goToEditMode={goToEditMode} isOwner={isOwner} />
+                                    initialValues={profile} isUploadingDataInProgress={isUploadingDataInProgress} />
+                                : <ProfileData profile={profile} goToEditMode={goToEditMode} isOwner={isOwner} />
                         }
                     </div>
                     : <Preloader />

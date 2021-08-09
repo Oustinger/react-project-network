@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import { getFollowingInProgress } from '../../redux/usersSelectors';
 import {
     addPost, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode,
     updateProfileData, updateProfileStatus, unfollowProfile, followProfile
 } from './../../redux/profileReducer';
-import { getIsFollowed, getWallpaper } from './../../redux/profileSelectors';
+import { getIsFollowed, getWallpaper, getIsFollowingInProgress, getIsUploadingDataInProgress } from './../../redux/profileSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Profile from './Profile';
 class ProfileContainer extends React.Component {
@@ -16,7 +15,7 @@ class ProfileContainer extends React.Component {
     }
 
     getUserData(userId) {
-        this.props.setCurrentUserId(this.getCurrentUserId());
+        this.props.setCurrentUserId(userId);
         this.props.getUserProfile(userId);
         this.props.getProfileStatus(userId);
     }
@@ -47,10 +46,11 @@ class ProfileContainer extends React.Component {
                     toggleProfileDataEditMode={this.props.toggleProfileDataEditMode}
                     updateProfileData={this.props.updateProfileData}
                     isFollowed={this.props.isFollowed}
-                    followingInProgress={this.props.followingInProgress}
+                    isFollowingInProgress={this.props.isFollowingInProgress}
                     follow={this.props.followProfile}
                     unfollow={this.props.unfollowProfile}
                     urlHistory={this.props.history}
+                    isUploadingDataInProgress={this.props.isUploadingDataInProgress}
                     wallpaper={this.props.wallpaper} />
             </div>
         );
@@ -66,7 +66,8 @@ const mapStateToProps = (state) => ({
     authUserId: state.auth.userId,
     profileDataEditMode: state.profilePage.profileDataEditMode,
     isFollowed: getIsFollowed(state),
-    followingInProgress: getFollowingInProgress(state),
+    isFollowingInProgress: getIsFollowingInProgress(state),
+    isUploadingDataInProgress: getIsUploadingDataInProgress(state),
     wallpaper: getWallpaper(state),
 });
 

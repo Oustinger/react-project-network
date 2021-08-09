@@ -12,8 +12,9 @@ export default ({ children, onClick, disabled, key, className, isInvert, isSmall
             { [s.small]: isSmall },
             { [s.medium]: isMedium },
             { [s[`float-${float}`]]: float },
+            { 'uk-disabled': disabled },
+            { [s.disabled]: disabled },
         )}
-            disabled={disabled}
             onClick={onClick}
             key={key}
         >

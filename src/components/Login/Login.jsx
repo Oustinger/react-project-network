@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React from "react";
+import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { reduxForm } from "redux-form";
@@ -12,10 +12,7 @@ import s from './Login.module.css';
 
 const maxLength30 = maxLengthCreator(30);
 
-const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
-    if (!error) {
-        (() => { })();
-    };
+const LoginForm = ({ error, handleSubmit, captchaUrl, isFetchingLoggingIn }) => {
     return <form onSubmit={handleSubmit} className={cn(s.form, stylesFormsControls.form)}>
         <ShadowSection>
             <ArrangeFormFields>
@@ -34,6 +31,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
                     textAfter: ' remember me',
                     label: null,
                     type: 'checkbox',
+                    checked: 'true',
                 })}
                 {
                     captchaUrl &&
@@ -52,7 +50,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
                         {error}
                     </div>
                 }
-                <FormButton>Login</FormButton>
+                <FormButton disabled={error || isFetchingLoggingIn}>Login</FormButton>
             </ArrangeFormFields>
         </ShadowSection>
     </form>
@@ -61,11 +59,19 @@ const LoginForm = ({ error, handleSubmit, captchaUrl }) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = ({ isAuth, captchaUrl, login }) => {
-    if (isAuth)
+    const [isFetchingLoggingIn, toggleFetchingLoggingIn] = useState(null);
+
+    if (isAuth) {
         return <Redirect to="/profile" />
+    }
+
+    const handleSubmit = (formData) => {
+        toggleFetchingLoggingIn(true);
+        Promise.all([login(formData)]).finally(() => toggleFetchingLoggingIn(false));
+    };
 
     return <div>
-        <LoginReduxForm onSubmit={(formData) => Promise.all[login(formData)]} captchaUrl={captchaUrl} />
+        <LoginReduxForm onSubmit={handleSubmit} captchaUrl={captchaUrl} isFetchingLoggingIn={isFetchingLoggingIn} />
     </div>
 };
 

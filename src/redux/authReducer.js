@@ -3,6 +3,7 @@ import { authAPI, profileAPI, getErrors, securityAPI } from './../api/api';
 
 const SET_AUTH_DATA = 'network/auth/SET_AUTH_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'network/auth/GET_CAPTCHA_URL_SUCCESS';
+const FETCHING_LOGGING_OUT = 'network/auth/FETCHING_LOGGING_OUT';
 
 const initialState = {
     userId: null,
@@ -14,6 +15,7 @@ const initialState = {
     },
     isAuth: false,
     captchaUrl: null,
+    isLoggingOut: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const authReducer = (state = initialState, action) => {
             return { ...state, ...action.payload };
         }
         case GET_CAPTCHA_URL_SUCCESS: {
+            return { ...state, ...action.payload };
+        }
+        case FETCHING_LOGGING_OUT: {
             return { ...state, ...action.payload };
         }
         default:
@@ -36,6 +41,10 @@ export const setAuthData = (userId, email, login, photos, isAuth) => ({
 export const getCaptchaUrlSuccess = (captchaUrl) => ({
     type: GET_CAPTCHA_URL_SUCCESS,
     payload: { captchaUrl },
+});
+export const fetchingLoggingOut = (isFetchingLoggingOut) => ({
+    type: FETCHING_LOGGING_OUT,
+    payload: { isFetchingLoggingOut },
 });
 
 
@@ -70,9 +79,11 @@ export const getCaptchaUrl = () => async (dispatch) => {
     dispatch(getCaptchaUrlSuccess(data.url));
 };
 export const logout = () => async (dispatch) => {
+    dispatch(fetchingLoggingOut(true));
     const data = await authAPI.logout();
     if (data.resultCode === 0) {
-        dispatch(setAuthData(null, null, null, null, false));
+        dispatch(setAuthData(null, null, null, { large: null, small: null }, false));
+        dispatch(fetchingLoggingOut(false));
     }
 };
 

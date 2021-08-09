@@ -15,6 +15,7 @@ const SET_IS_FOLLOWED = 'network/profile/SET_IS_FOLLOWED';
 const FOLLOW = 'network/profile/FOLLOW';
 const UNFOLLOW = 'network/profile/UNFOLLOW';
 const TOGGLE_FOLLOWING_PROGRESS = 'network/users/TOGGLE_FOLLOWING_PROGRESS';
+const TOGGLE_UPLOADING_DATA_IN_PROGRESS = 'network/users/TOGGLE_UPLOADING_DATA_IN_PROGRESS';
 
 const initialState = {
     posts: [
@@ -72,7 +73,10 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, isFollowed: false };
         }
         case TOGGLE_FOLLOWING_PROGRESS: {
-            return { ...state, followingInProgress: action.isFollowing };
+            return { ...state, isFollowingInProgress: action.isFollowing };
+        }
+        case TOGGLE_UPLOADING_DATA_IN_PROGRESS: {
+            return { ...state, isUploadingDataInProgress: action.isUploading };
         }
         default:
             return state;
@@ -106,15 +110,19 @@ export const unfollowSuccess = () => ({ type: UNFOLLOW });
 export const toggleFollowingProgress = (isFollowing) => ({
     type: TOGGLE_FOLLOWING_PROGRESS, isFollowing
 });
+export const toggleUploadingDataInProgress = (isUploading) => ({
+    type: TOGGLE_UPLOADING_DATA_IN_PROGRESS, isUploading
+});
 
 
 export const getUserProfile = (userId) => async (dispatch, getState) => {
     const isAuth = getState().auth.isAuth;
+    const isFetchingLoggingOut = getState().auth.isFetchingLoggingOut;
     dispatch(fetchingUserProfile(true));
 
     const data = await profileAPI.getProfile(userId);
 
-    if (isAuth)
+    if (isAuth && !isFetchingLoggingOut)
         await dispatch(getIsFollowed(userId));
 
     const loadedUsers = getState().usersPage.users;
@@ -151,6 +159,8 @@ export const updateProfileData = (formData) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const checkedFromData = checkUpdateProfileFormData(formData);
 
+    dispatch(toggleUploadingDataInProgress(true));
+
     const data = await profileAPI.updateData({ userId, ...checkedFromData });
     if (data.resultCode === 0) {
         dispatch(toggleProfileDataEditMode());
@@ -158,6 +168,8 @@ export const updateProfileData = (formData) => async (dispatch, getState) => {
     } else {
         dispatch(stopSubmit('profile', getErrors(data.messages)));
     }
+
+    dispatch(toggleUploadingDataInProgress(false));
 };
 
 export const getIsFollowed = (userId) => async (dispatch) => {

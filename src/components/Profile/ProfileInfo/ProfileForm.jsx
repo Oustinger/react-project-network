@@ -8,7 +8,7 @@ import s from './ProfileInfo.module.css';
 
 const maxLength100 = maxLengthCreator(100);
 
-const ProfileForm = ({ error, handleSubmit }) => {
+const ProfileForm = ({ error, handleSubmit, isUploadingDataInProgress }) => {
     return <form onSubmit={handleSubmit} className={stylesFormsControls.form}>
         {
             error && <div className={stylesFormsControls.commonError}>
@@ -89,7 +89,10 @@ const ProfileForm = ({ error, handleSubmit }) => {
                 </div>
             </div>
             <div>
-                <FormButton isInvert={true} isSmall={true} float="right" className={s.form__btn}>Save</FormButton>
+                <FormButton isInvert={true} isSmall={true}
+                    float="right" className={s.form__btn}
+                    disabled={isUploadingDataInProgress}
+                >Save</FormButton>
             </div>
         </div>
     </form>

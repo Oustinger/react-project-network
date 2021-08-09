@@ -40,11 +40,11 @@ export const Input = (props) => {
     </FormControl>
 };
 
-export const createField = (component, validate, name, { type, placeholder, textAfter, label }) => {
+export const createField = (component, validate, name, { type, placeholder, textAfter, label, checked }) => {
     const fieldControl = (<>
         <Field component={component} name={name} placeholder={placeholder}
             validate={validate} type={type} textafter={textAfter}
-            label={label} />
+            label={label} checked={checked} />
     </>);
 
     return <>

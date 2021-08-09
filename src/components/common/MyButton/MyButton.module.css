@@ -51,3 +51,7 @@
 .btn.float-left {
     float: left;
 }
+
+.btn.disabled {
+    background-color: var(--color-contrast-thin);
+}

@@ -15,11 +15,12 @@ const Profile = (props) => {
                 goToEditMode={props.toggleProfileDataEditMode}
                 updateProfileData={props.updateProfileData}
                 editMode={props.profileDataEditMode}
-                followingInProgress={props.followingInProgress}
+                isFollowingInProgress={props.isFollowingInProgress}
                 unfollow={props.unfollow}
                 follow={props.follow}
                 isFollowed={props.isFollowed}
                 wallpaper={props.wallpaper}
+                isUploadingDataInProgress={props.isUploadingDataInProgress}
                 urlHistory={props.urlHistory} />
             <MyPosts posts={props.posts}
                 addPost={props.addPost}
