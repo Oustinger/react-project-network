@@ -1,0 +1,19 @@
+.modalNotifier h2 {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
+}
+
+.modalNotifier h3 {
+    font-size: 1.5rem;
+    margin: 1.3rem 0;
+}
+
+.modalNotifier p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.modalNotifier__body {
+    border-radius: 15px;
+    padding: 1.9rem;
+}

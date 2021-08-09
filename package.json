@@ -16,6 +16,7 @@
         "redux-form": "^8.3.7",
         "redux-thunk": "^2.3.0",
         "reselect": "^4.0.0",
+        "uikit": "^3.7.2",
         "web-vitals": "^1.1.1"
     },
     "scripts": {

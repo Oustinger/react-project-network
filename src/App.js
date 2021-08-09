@@ -8,11 +8,9 @@ import Preloader from './components/common/Preloader/Preloader';
 import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import Music from './components/Music/Music';
+import ModalNotifier from './components/ModalNotifier/ModalNotifier';
 import Navbar from './components/Navbar/Navbar';
-import News from './components/News/News';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import { initialize } from './redux/appReducer';
 import store from './redux/reduxStore';
@@ -48,9 +46,6 @@ class AppComponent extends Component {
                         <Route path="/dialogs/:dialogId?" render={withSuspect(DialogsContainer)} />
                         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                         <Route path="/users" render={() => <UsersContainer />} />
-                        <Route path="/news" render={() => <News />} />
-                        <Route path="/music" render={() => <Music />} />
-                        <Route path="/settings" render={() => <Settings />} />
                         <Route path="/login/facebook" render={() => <div>Facebook login page</div>} />
                         <Route path="/login" render={() => <Login />} />
                         <Route path="*" render={() => <div><h1>404 Not found</h1></div>} />
@@ -58,6 +53,7 @@ class AppComponent extends Component {
                 </div>
             </div>
             <Footer />
+            <ModalNotifier />
         </div >);
     }
 }

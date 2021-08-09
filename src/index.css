@@ -253,16 +253,3 @@ p {
 }
 
 /* ---------------------------------------------------- */
-
-/* FIX SCROLLING TO TOP WHEN UK-MODAL CLOSES */
-
-.uk-modal-page {
-    overflow: visible !important;
-}
-
-.uk-modal-page>body {
-    overflow-y: visible !important;
-    overflow-x: hidden !important;
-}
-
-/* ---------------------------------------------------- */

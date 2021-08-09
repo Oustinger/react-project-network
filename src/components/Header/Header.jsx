@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userImg from '../../assets/imgs/user.png';
 import logoSvg from '../../assets/logo.svg';
+import MyButton from '../common/MyButton/MyButton';
 import s from './Header.module.css';
 
 const Header = (props) => {
@@ -15,7 +16,11 @@ const Header = (props) => {
                         <span>Network</span>
                     </div>
                 </NavLink>
-                <div className={s.authBlock}>
+                <div className={cn(s.authBlock, 'flex-row-xb-yc')}>
+                    <MyButton isSmall={true} isInvert={true} type="button" 
+                        ukToggle="target: #modalNotifier" className={s.authBlock__modalNotifier}>
+                        Useful info
+                    </MyButton>
                     {
                         props.isAuth ?
                             <div className={`flex-row-xs-yc`}>
@@ -58,12 +63,21 @@ const Header = (props) => {
                                             <ul className={`${s.authBlock__panel__items} uk-list uk-list-divider`}>
                                                 <div>
                                                     <NavLink to={`/profile/${props.userId}`}
-                                                        className={`flex-row-xs-yc`}>
+                                                        className='flex-row-xs-yc'>
                                                         Profile
                                                     </NavLink>
                                                 </div>
                                                 <div>
-                                                    <a href="#" onClick={props.logout}>LogOut</a>
+                                                    <NavLink to={`/profile/18114`}
+                                                        className='flex-row-xs-yc'>
+                                                        Author
+                                                    </NavLink>
+                                                </div>
+                                                <div>
+                                                    <a href="#" onClick={props.logout}
+                                                        className='flex-row-xs-yc'>
+                                                        LogOut
+                                                    </a>
                                                 </div>
                                             </ul>
                                         </div>

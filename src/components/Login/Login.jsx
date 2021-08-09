@@ -16,7 +16,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl, isFetchingLoggingIn }) => 
     return <form onSubmit={handleSubmit} className={cn(s.form, stylesFormsControls.form)}>
         <ShadowSection>
             <ArrangeFormFields>
-                <h2 className={stylesFormsControls.fullFiled}>Login page</h2>
+                <h2 className={cn(s.title, stylesFormsControls.fullFiled)}>Login page</h2>
                 {createField(Input, [required, maxLength30], 'email', {
                     placeholder: "Email",
                     label: 'Email',
