@@ -2,8 +2,9 @@
     min-height: 100vh;
     display: grid;
     grid-template-areas: "h h h"
-    "n c c";
-    grid-template-rows: var(--header-height) 1fr;
+    "n c c"
+    "f f f";
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
     grid-template-columns: var(--nav-width) 1fr;
 }
 

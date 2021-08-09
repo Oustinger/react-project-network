@@ -1,6 +1,7 @@
 html {
     --nav-width: 18vw;
     --header-height: 10vh;
+    --footer-height: 5vh;
     --sections-padding: 1.5rem;
     --screen-max-width: 1600px;
     --color-main: #000;

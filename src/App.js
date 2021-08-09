@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
@@ -6,6 +5,7 @@ import { compose } from 'redux';
 import s from './App.module.css';
 import withSuspect from './components/common/HOC/withSuspect';
 import Preloader from './components/common/Preloader/Preloader';
+import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import Music from './components/Music/Music';
@@ -57,6 +57,7 @@ class AppComponent extends Component {
                     </Switch>
                 </div>
             </div>
+            <Footer />
         </div >);
     }
 }
