@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MyButton from '../../common/MyButton/MyButton';
 import s from './Paginator.module.css';
 
@@ -9,8 +9,13 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onChangePageNumber,
         .map((val, idx) => idx + 1);                     // заполняем его номерами страниц
 
     const portionsCount = Math.ceil(pagesCount / portionSize);
+
     const startPortionNumber = Math.ceil(currentPage / portionSize);
     const [portionNumber, setPortionNumber] = useState(startPortionNumber);
+    useEffect(() => {
+        setPortionNumber(startPortionNumber);
+    }, [currentPage]);
+
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     const rightPortionPageNumber = portionNumber * portionSize;
 
