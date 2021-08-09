@@ -1,0 +1,10 @@
+export const getIsFollowed = (state) => state.profilePage.isFollowed;
+export const getWallpaper = (state) => (state.profilePage.profile && state.profilePage.profile.wallpaper);
+export const getIsFollowingInProgress = (state) => state.profilePage.isFollowingInProgress;
+export const getIsUploadingDataInProgress = (state) => state.profilePage.isUploadingDataInProgress;
+export const getProfile = (state) => state.profilePage.profile;
+export const getStatus = (state) => state.profilePage.status;
+export const getPosts = (state) => state.profilePage.posts;
+export const getIsFetchingUserProfile = (state) => state.profilePage.isFetchingUserProfile;
+export const getCurrentUserId = (state) => state.profilePage.currentUserId;
+export const getProfileDataEditMode = (state) => state.profilePage.profileDataEditMode;

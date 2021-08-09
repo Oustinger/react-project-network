@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import { reset as resetForm, stopSubmit } from 'redux-form';
-import { profileAPI } from "../api/api";
-import { addProfileWallpaper } from '../utils/userWallpaperHelper';
-import { getErrors, followAPI } from './../api/api';
+import { profileAPI } from "../../api/api";
+import { addProfileWallpaper } from '../../utils/userWallpaperHelper';
+import { getErrors, followAPI } from '../../api/api';
 
 const ADD_POST = 'network/profile/ADD-POST';
 const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
@@ -29,6 +29,7 @@ const initialState = {
     currentUserId: null,
     profileDataEditMode: false,
     isFollowed: false,
+    isFollowingInProgress: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -36,8 +37,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             const newPost = {
                 id: state.posts.length + 1,
-                message: action.text,
-                likesCount: '0',
+                ...action.payload,
             };
 
             return {
@@ -46,25 +46,25 @@ const profileReducer = (state = initialState, action) => {
             };
         }
         case SET_USER_PROFILE: {
-            return { ...state, profile: action.profile };
+            return { ...state, ...action.payload };
         }
         case SET_PROFILE_STATUS: {
-            return { ...state, status: action.status };
+            return { ...state, ...action.payload };
         }
         case FETCHING_USER_PROFILE: {
-            return { ...state, isFetchingUserProfile: action.isFetching };
+            return { ...state, ...action.payload };
         }
         case SET_CURRENT_USER_ID: {
-            return { ...state, currentUserId: action.userId };
+            return { ...state, ...action.payload };
         }
         case SAVE_PHOTO_SUCCESS: {
-            return { ...state, profile: { ...state.profile, photos: action.photos } };
+            return { ...state, profile: { ...state.profile, ...action.payload } };
         }
         case TOGGLE_PROFILE_DATA_EDIT_MODE: {
             return { ...state, profileDataEditMode: !state.profileDataEditMode };
         }
         case SET_IS_FOLLOWED: {
-            return { ...state, isFollowed: action.isFollowed };
+            return { ...state, ...action.payload };
         }
         case FOLLOW: {
             return { ...state, isFollowed: true };
@@ -73,45 +73,51 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, isFollowed: false };
         }
         case TOGGLE_FOLLOWING_PROGRESS: {
-            return { ...state, isFollowingInProgress: action.isFollowing };
+            return { ...state, ...action.payload };
         }
         case TOGGLE_UPLOADING_DATA_IN_PROGRESS: {
-            return { ...state, isUploadingDataInProgress: action.isUploading };
+            return { ...state, ...action.payload };
         }
         default:
             return state;
     }
 };
 
-export const addPost = (text) => ({ type: ADD_POST, text });
+export const addPost = (message) => ({
+    type: ADD_POST,
+    payload: {
+        message: message,
+        likesCount: '0',
+    },
+});
 export const setUserProfile = (profile) => (
-    { type: SET_USER_PROFILE, profile }
+    { type: SET_USER_PROFILE, payload: { profile } }
 );
 export const setProfileStatus = (status) => (
-    { type: SET_PROFILE_STATUS, status }
+    { type: SET_PROFILE_STATUS, payload: { status } }
 );
-export const fetchingUserProfile = (isFetching) => (
-    { type: FETCHING_USER_PROFILE, isFetching }
+export const fetchingUserProfile = (isFetchingUserProfile) => (
+    { type: FETCHING_USER_PROFILE, payload: { isFetchingUserProfile } }
 );
-export const setCurrentUserId = (userId) => (
-    { type: SET_CURRENT_USER_ID, userId }
+export const setCurrentUserId = (currentUserId) => (
+    { type: SET_CURRENT_USER_ID, payload: { currentUserId } }
 );
 export const savePhotoSuccess = (photos) => (
-    { type: SAVE_PHOTO_SUCCESS, photos }
+    { type: SAVE_PHOTO_SUCCESS, payload: { photos } }
 );
 export const toggleProfileDataEditMode = () => (
     { type: TOGGLE_PROFILE_DATA_EDIT_MODE }
 );
 export const setIsFollowed = (isFollowed) => (
-    { type: SET_IS_FOLLOWED, isFollowed }
+    { type: SET_IS_FOLLOWED, payload: { isFollowed } }
 );
 export const followSuccess = () => ({ type: FOLLOW });
 export const unfollowSuccess = () => ({ type: UNFOLLOW });
-export const toggleFollowingProgress = (isFollowing) => ({
-    type: TOGGLE_FOLLOWING_PROGRESS, isFollowing
+export const toggleFollowingProgress = (isFollowingInProgress) => ({
+    type: TOGGLE_FOLLOWING_PROGRESS, payload: { isFollowingInProgress }
 });
-export const toggleUploadingDataInProgress = (isUploading) => ({
-    type: TOGGLE_UPLOADING_DATA_IN_PROGRESS, isUploading
+export const toggleUploadingDataInProgress = (isUploadingDataInProgress) => ({
+    type: TOGGLE_UPLOADING_DATA_IN_PROGRESS, payload: { isUploadingDataInProgress }
 });
 
 

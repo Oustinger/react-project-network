@@ -1,9 +1,11 @@
 import React from 'react';
-import { getAuthUserData, logout } from './../../redux/authReducer';
-import Header from './Header';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
+import { getPhotoSmall, getUserId } from '../../redux/auth/authSelectors';
+import { getAuthUserData, logout } from './../../redux/auth/authReducer';
+import { getIsAuth, getLogin } from './../../redux/auth/authSelectors';
+import Header from './Header';
 
 class HeaderContainer extends React.Component {
     render() {
@@ -19,10 +21,10 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    userId: state.auth.userId,
-    login: state.auth.login,
-    photo: state.auth.photos.small,
-    isAuth: state.auth.isAuth,
+    userId: getUserId(state),
+    login: getLogin(state),
+    photo: getPhotoSmall(state),
+    isAuth: getIsAuth(state),
 });
 
 export default compose(

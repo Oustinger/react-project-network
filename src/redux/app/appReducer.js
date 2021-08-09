@@ -1,4 +1,4 @@
-import { getAuthUserData } from "./authReducer";
+import { getAuthUserData } from "../auth/authReducer";
 
 const INITIALIZED_SUCCESS = 'network/app/INITIALIZED_SUCCESS';
 
@@ -9,7 +9,7 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS: {
-            return { ...state, isInitialized: true };
+            return { ...state, ...action.payload };
         }
         default:
             return state;
@@ -18,6 +18,7 @@ const appReducer = (state = initialState, action) => {
 
 export const initializedSuccess = () => ({
     type: INITIALIZED_SUCCESS,
+    payload: { isInitialized: true },
 });
 
 

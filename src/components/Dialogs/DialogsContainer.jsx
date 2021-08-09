@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { addMessage, resetDialogForm, setActiveDialog } from '../../redux/dialogs/dialogsReducer';
 import { getActiveDialogId, getAuthors, getDialogs, getMessages } from '../../redux/dialogs/dialogsSelectors';
-import { getPhotoLarge } from './../../redux/authSelectors';
+import { getPhotoLarge } from './../../redux/auth/authSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Preloader from './../common/Preloader/Preloader';
 import Dialogs from './Dialogs';

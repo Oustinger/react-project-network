@@ -7,7 +7,8 @@ import { maxLengthCreator, required } from "../../utils/validators";
 import { ArrangeFormFields, createField, FormButton, Input } from "../common/FormsControls/FormsControls";
 import stylesFormsControls from '../common/FormsControls/FormsControls.module.css';
 import ShadowSection from '../common/ShadowSection/ShadowSection';
-import { login } from './../../redux/authReducer';
+import { login } from './../../redux/auth/authReducer';
+import { getCaptchaUrl, getIsAuth } from './../../redux/auth/authSelectors';
 import s from './Login.module.css';
 
 const maxLength30 = maxLengthCreator(30);
@@ -76,8 +77,8 @@ const Login = ({ isAuth, captchaUrl, login }) => {
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-    captchaUrl: state.auth.captchaUrl,
+    isAuth: getIsAuth(state),
+    captchaUrl: getCaptchaUrl(state),
 });
 
 export default connect(mapStateToProps, { login })(Login);

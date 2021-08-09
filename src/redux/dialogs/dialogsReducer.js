@@ -43,7 +43,6 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             const newMessage = {
                 id: state.messages.length + 1,
-                authorId: 0,
                 ...action.payload,
             };
 
@@ -55,7 +54,7 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_ACTIVE_DIALOG: {
             return {
                 ...state,
-                activeDialogId: action.payload,
+                ...action.payload,
             };
         }
         default:
@@ -63,8 +62,15 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessage = (payload) => ({ type: ADD_MESSAGE, payload });
-export const setActiveDialog = (payload) => ({ type: SET_ACTIVE_DIALOG, payload });
+export const addMessage = ({ message, dialogId }) => ({
+    type: ADD_MESSAGE,
+    payload: {
+        message,
+        dialogId,
+        authorId: 0,
+    }
+});
+export const setActiveDialog = (activeDialogId) => ({ type: SET_ACTIVE_DIALOG, payload: { activeDialogId } });
 
 
 export const resetDialogForm = () => (dispatch) => {

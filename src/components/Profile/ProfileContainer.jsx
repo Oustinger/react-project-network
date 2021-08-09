@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
+import { getUserId } from '../../redux/auth/authSelectors';
 import {
-    addPost, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode,
-    updateProfileData, updateProfileStatus, unfollowProfile, followProfile
-} from './../../redux/profileReducer';
-import { getIsFollowed, getWallpaper, getIsFollowingInProgress, getIsUploadingDataInProgress } from './../../redux/profileSelectors';
+    addPost, followProfile, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode, unfollowProfile, updateProfileData, updateProfileStatus
+} from './../../redux/profile/profileReducer';
+import { getCurrentUserId, getIsFetchingUserProfile, getIsFollowed, getIsFollowingInProgress, getIsUploadingDataInProgress, getPosts, getProfile, getProfileDataEditMode, getStatus, getWallpaper } from './../../redux/profile/profileSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Profile from './Profile';
 class ProfileContainer extends React.Component {
@@ -58,17 +58,17 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    posts: state.profilePage.posts,
-    isFetchingUserProfile: state.profilePage.isFetchingUserProfile,
-    prevUserId: state.profilePage.currentUserId,
-    authUserId: state.auth.userId,
-    profileDataEditMode: state.profilePage.profileDataEditMode,
+    profile: getProfile(state),
+    status: getStatus(state),
+    posts: getPosts(state),
+    isFetchingUserProfile: getIsFetchingUserProfile(state),
+    prevUserId: getCurrentUserId(state),
+    profileDataEditMode: getProfileDataEditMode(state),
     isFollowed: getIsFollowed(state),
     isFollowingInProgress: getIsFollowingInProgress(state),
     isUploadingDataInProgress: getIsUploadingDataInProgress(state),
     wallpaper: getWallpaper(state),
+    authUserId: getUserId(state),
 });
 
 export default compose(

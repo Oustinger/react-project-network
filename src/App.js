@@ -12,7 +12,8 @@ import ModalNotifier from './components/ModalNotifier/ModalNotifier';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import { initialize } from './redux/appReducer';
+import { initialize } from './redux/app/appReducer';
+import { getIsInitialized } from './redux/app/appSelectors';
 import store from './redux/reduxStore';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -58,9 +59,7 @@ class AppComponent extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { isInitialized: state.app.isInitialized }
-};
+const mapStateToProps = (state) => ({ isInitialized: getIsInitialized(state) });
 
 const AppComponentContainer = compose(
     connect(mapStateToProps, { initialize }),

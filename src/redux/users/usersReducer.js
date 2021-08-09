@@ -1,6 +1,6 @@
-import { updateObjectInArray } from '../utils/objectHelpers';
-import { followAPI, usersAPI } from './../api/api';
-import { addUsersWallpapers } from './../utils/userWallpaperHelper';
+import { updateObjectInArray } from '../../utils/objectHelpers';
+import { followAPI, usersAPI } from './../../api/api';
+import { addUsersWallpapers } from './../../utils/userWallpaperHelper';
 
 const FOLLOW = 'network/users/FOLLOW';
 const UNFOLLOW = 'network/users/UNFOLLOW';
@@ -35,19 +35,19 @@ const usersReducer = (state = initialState, action) => {
             };
         }
         case SET_USERS: {
-            return { ...state, users: [...action.newUsers] };
+            return { ...state, ...action.payload };
         }
         case SET_TOTAL_USERS_COUNT: {
-            return { ...state, totalUsersCount: action.totalUsersCount };
+            return { ...state, ...action.payload };
         }
         case SET_PAGE_SIZE: {
-            return { ...state, pageSize: action.pageSize };
+            return { ...state, ...action.payload };
         }
         case SET_CURRENT_PAGE: {
-            return { ...state, currentPage: action.currentPage };
+            return { ...state, ...action.payload };
         }
         case TOGGLE_IS_FETCHING: {
-            return { ...state, isFetching: action.isFetching };
+            return { ...state, ...action.payload };
         }
         case TOGGLE_FOLLOWING_PROGRESS: {
             return (
@@ -65,15 +65,15 @@ export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 
-export const setUsers = (newUsers) => ({ type: SET_USERS, newUsers });
+export const setUsers = (users) => ({ type: SET_USERS, payload: { users } });
 
-export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, payload: { totalUsersCount } });
 
-export const setPageSize = (pageSize) => ({ type: SET_PAGE_SIZE, pageSize });
+export const setPageSize = (pageSize) => ({ type: SET_PAGE_SIZE, payload: { pageSize } });
 
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, payload: { currentPage } });
 
-export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, payload: { isFetching } });
 
 export const toggleFollowingProgress = (isFollowing, userId) => ({
     type: TOGGLE_FOLLOWING_PROGRESS,

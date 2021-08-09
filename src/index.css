@@ -26,7 +26,7 @@ html {
 
 @media (min-width: 1600px) {
     html {
-        --nav-width: 192px;
+        --nav-width: 260px;
         --header-height: 90px;
     }
 }

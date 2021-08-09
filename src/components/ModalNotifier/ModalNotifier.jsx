@@ -24,6 +24,11 @@ const showNotificationIfNeed = () => {
 
 const ModalNotifier = () => {
     useEffect(() => {
+        const element = document.getElementById('modalNotifier');
+        UIkit.modal(element);
+    }, []);
+
+    useEffect(() => {
         showNotificationIfNeed();
     });
 
