@@ -1,4 +1,3 @@
-import React from 'react';
 import Paginator from './Paginator/Paginator';
 import User from './User/User';
 import s from './Users.module.css';

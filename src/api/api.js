@@ -1,5 +1,5 @@
 import axios from "axios";
-import _ from 'lodash';
+import { merge as lodashMerge } from 'lodash';
 import { firstLetterToLowerCase } from './../utils/stringHelpers';
 
 const axiosInstance = axios.create({
@@ -27,7 +27,7 @@ export const getErrors = (errorMessages) => {
                             ), {})
                         : { [firstLetterToLowerCase(fieldText)]: message };
 
-                    return _.merge({ ...acc }, error);
+                    return lodashMerge({ ...acc }, error);
                 }
 
                 return { ...acc, _error: errorText };

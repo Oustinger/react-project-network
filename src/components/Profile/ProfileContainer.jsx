@@ -4,9 +4,15 @@ import { withRouter } from 'react-router';
 import { compose } from 'redux';
 import { getUserId } from '../../redux/auth/authSelectors';
 import {
-    addPost, followProfile, getProfileStatus, getUserProfile, resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode, unfollowProfile, updateProfileData, updateProfileStatus
+    addPost, followProfile, getProfileStatus, getUserProfile,
+    resetPostForm, savePhoto, setCurrentUserId, toggleProfileDataEditMode,
+    unfollowProfile, updateProfileData, updateProfileStatus
 } from './../../redux/profile/profileReducer';
-import { getCurrentUserId, getIsFetchingUserProfile, getIsFollowed, getIsFollowingInProgress, getIsUploadingDataInProgress, getPosts, getProfile, getProfileDataEditMode, getStatus, getWallpaper } from './../../redux/profile/profileSelectors';
+import {
+    getCurrentUserId, getIsFetchingUserProfile, getIsFollowed,
+    getIsFollowingInProgress, getIsUploadingDataInProgress, getPosts,
+    getProfile, getProfileDataEditMode, getStatus, getWallpaper
+} from './../../redux/profile/profileSelectors';
 import { withAuthRedirect } from './../common/HOC/withAuthRedirect';
 import Profile from './Profile';
 class ProfileContainer extends React.Component {

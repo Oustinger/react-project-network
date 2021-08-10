@@ -21,13 +21,20 @@ const DialogContainer = (props) => {
         props.resetDialogForm();
     };
 
-    const findCompanion = (authorId) => props.authors.find(({ id }) => id === authorId);
+    const findCompanionById = (authorId) => props.authors.find(({ id }) => id === authorId);
+
+    const companionName = props.activeDialogId &&
+        props.dialogs.find(({ id }) => id === props.activeDialogId)
+            .companions
+            .map(compId => findCompanionById(compId))
+            .map(comp => comp.name)[0];
 
     return <Dialogs dialogs={props.dialogs}
         messages={props.messages.filter(({ dialogId }) => dialogId === props.activeDialogId)}
         activeDialogId={props.activeDialogId}
         photoMe={props.photoMe}
-        findCompanion={findCompanion}
+        companionName={companionName}
+        findCompanionById={findCompanionById}
         onFormSubmit={onFormSubmit} />;
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { reduxForm } from 'redux-form';
 import { maxLengthCreator } from '../../../utils/validators';
 import { required } from './../../../utils/validators';
@@ -7,6 +6,14 @@ import stylesFormsControls from './../../common/FormsControls/FormsControls.modu
 import s from './ProfileInfo.module.css';
 
 const maxLength100 = maxLengthCreator(100);
+
+const contacts = ['github', 'vk', 'facebook', 'instagram', 'twitter', 'website', 'youtube'];
+const Contact = (name) => (<div>
+    {createField(Input, [maxLength100], `contacts.${name}`, {
+        placeholder: name,
+        label: `${name.toUpperCase()}: `,
+    })}
+</div>);
 
 const ProfileForm = ({ error, handleSubmit, isUploadingDataInProgress }) => {
     return <form onSubmit={handleSubmit} className={stylesFormsControls.form}>
@@ -32,60 +39,21 @@ const ProfileForm = ({ error, handleSubmit, isUploadingDataInProgress }) => {
             <div>
                 {createField(Input, [], 'lookingForAJob', {
                     type: 'checkbox',
-                    textAfter: 'Are looking for a job? ',
+                    textAfter: 'Looking for a job? ',
                 })}
             </div>
             <div>
                 {createField(Textarea, [maxLength100, required], 'lookingForAJobDescription', {
                     placeholder: 'Describe what job you are looking for and about your skills',
-                    label: 'Looking for a job description: ',
+                    label: 'Description: ',
                 })}
             </div>
             <hr className={s.form__divider}></hr>
             <div>
                 <div className={s.form__contactsFields}>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.github', {
-                            placeholder: 'github',
-                            label: 'Github: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.vk', {
-                            placeholder: 'vk',
-                            label: 'Vk: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.facebook', {
-                            placeholder: 'facebook',
-                            label: 'Facebook: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.instagram', {
-                            placeholder: 'instagram',
-                            label: 'Instagram: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.twitter', {
-                            placeholder: 'twitter',
-                            label: 'Twitter: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.website', {
-                            placeholder: 'website',
-                            label: 'Website: ',
-                        })}
-                    </div>
-                    <div>
-                        {createField(Input, [maxLength100], 'contacts.youtube', {
-                            placeholder: 'youtube',
-                            label: 'YouTube: ',
-                        })}
-                    </div>
+                    {
+                        contacts.map(contact => <Contact name={contact} />)
+                    }
                 </div>
             </div>
             <div>

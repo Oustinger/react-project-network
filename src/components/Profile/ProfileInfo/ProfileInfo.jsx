@@ -1,4 +1,3 @@
-import React from 'react';
 import userImg from '../../../assets/imgs/user.png';
 import MyButton from '../../common/MyButton/MyButton';
 import ShadowSection from '../../common/ShadowSection/ShadowSection';

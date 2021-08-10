@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import React from 'react';
 import s from '../MyPosts.module.css';
 
 const Post = ({ message, likesCount }) => {

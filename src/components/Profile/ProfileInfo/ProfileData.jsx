@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import React from 'react';
 import checkMark from '../../../assets/icons/checkbox-mark.png';
 import facebook from '../../../assets/icons/socials/facebook.png';
 import github from '../../../assets/icons/socials/github.png';
@@ -9,8 +8,8 @@ import vk from '../../../assets/icons/socials/vk.png';
 import website from '../../../assets/icons/socials/website.png';
 import youtube from '../../../assets/icons/socials/youtube.png';
 import MyButton from '../../common/MyButton/MyButton';
-import s from './ProfileInfo.module.css';
 import styleProfile from '../Profile.module.css';
+import s from './ProfileInfo.module.css';
 
 const ProfileData = ({ profile, goToEditMode, isOwner }) => {
     const contacts = Object.entries(profile.contacts).filter(([name, address]) => address);

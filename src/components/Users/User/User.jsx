@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userImg from '../../../assets/imgs/user.png';
 import MyButton from '../../common/MyButton/MyButton';

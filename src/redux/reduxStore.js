@@ -21,6 +21,4 @@ const store = createStore(reducers, composeEnhancers(
     applyMiddleware(thunkMiddleware)
 ));
 
-window.state = () => store.getState();
-
 export default store;

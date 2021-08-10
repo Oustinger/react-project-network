@@ -1,17 +1,13 @@
-import React from 'react';
+import ShadowSection from '../common/ShadowSection/ShadowSection';
 import DialogForm from './DialogForm/DialogForm';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import MessageItem from './MessageItem/MessageItem';
-import ShadowSection from '../common/ShadowSection/ShadowSection';
 
-const Dialogs = ({ dialogs, findCompanion, messages, onFormSubmit, photoMe, activeDialogId }) => {
-    const companionName = activeDialogId && findCompanion(
-        dialogs.find(
-            ({ id }) => id === activeDialogId
-        ).companions[0]
-    ).name;
-
+const Dialogs = ({
+    dialogs, findCompanionById, messages, onFormSubmit,
+    photoMe, activeDialogId, companionName,
+}) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -29,14 +25,14 @@ const Dialogs = ({ dialogs, findCompanion, messages, onFormSubmit, photoMe, acti
                         activeDialogId ?
                             <>
                                 <div className={s.messages__head}>
-                                    <h2><b>Dialog with {companionName}</b></h2>
+                                    <h2>Dialog with <b>{companionName}</b></h2>
                                     <hr></hr>
                                 </div>
                                 <div className={s.messages__itemsList}>
                                     {
                                         messages.map(({ id, authorId, message }) => (
                                             <MessageItem message={message} key={id} photoMe={photoMe}
-                                                author={findCompanion(authorId)} />
+                                                author={findCompanionById(authorId)} />
                                         ))
                                     }
                                 </div>

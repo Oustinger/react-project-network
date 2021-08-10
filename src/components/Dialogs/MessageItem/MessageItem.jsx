@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './../Dialogs.module.css';
 import userImg from '../../../assets/imgs/user.png';
 

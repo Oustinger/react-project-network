@@ -17,7 +17,8 @@ const FormControl = ({ meta, children }) => {
 };
 
 export const Textarea = (props) => {
-    const { input, meta, ...restProps } = props;        // важно, чтобы obj: meta не попал в HTML input/textarea
+    // важно, чтобы obj: meta не попал в HTML input/textarea
+    const { input, meta, ...restProps } = props;
 
     return <FormControl {...props}>
         <textarea {...input} {...restProps} />
@@ -25,8 +26,8 @@ export const Textarea = (props) => {
 };
 
 export const Input = (props) => {
-    const { input, meta, textafter, label, otherProps, ...restProps } = props;
     // важно, чтобы obj: meta не попал в HTML input/textarea
+    const { input, meta, textafter, label, otherProps, ...restProps } = props;
 
     return <FormControl {...props}>
         <input id={input.name} {...input} {...otherProps} {...restProps} />
@@ -40,11 +41,11 @@ export const Input = (props) => {
     </FormControl>
 };
 
-export const createField = (component, validate, name, { type, placeholder, textAfter, label, checked }) => {
+export const createField = (component, validate, name, { type, placeholder, textAfter, label }) => {
     const fieldControl = (<>
         <Field component={component} name={name} placeholder={placeholder}
             validate={validate} type={type} textafter={textAfter}
-            label={label} checked={checked} />
+            label={label} />
     </>);
 
     return <>
@@ -57,12 +58,12 @@ export const createField = (component, validate, name, { type, placeholder, text
 
 export const ArrangeFormFields = ({ children }) => {
     const styles = {
-        'display': 'grid',
-        'grid-template-columns': '[labels] auto [controls] 1fr',
-        'grid-auto-flow': 'row',
-        'grid-gap': '1em',
-        'place-items': 'center start',
-        'padding': '1.2em',
+        display: 'grid',
+        gridTemplateColumns: '[labels] auto [controls] 1fr',
+        gridAutoFlow: 'row',
+        gridGap: '1em',
+        placeItems: 'center start',
+        padding: '1.2em',
     };
 
     return <div style={styles}>
@@ -72,7 +73,7 @@ export const ArrangeFormFields = ({ children }) => {
 
 export const FormButton = (props) => {
     return <div className={s.formBtnContainer}>
-        <input id="submit" type="submit" style={{ 'display': 'none' }} />
+        <input id="submit" type="submit" style={{ display: 'none' }} />
         <label htmlFor="submit">
             <MyButton {...props} className={cn(s.formBtn, props.className)}>
                 {props.children}

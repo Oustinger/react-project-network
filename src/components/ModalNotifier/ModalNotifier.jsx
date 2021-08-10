@@ -6,10 +6,12 @@ import MyButton from '../common/MyButton/MyButton';
 import s from './ModalNotifier.module.css';
 
 const showNotificationIfNeed = () => {
-    const cookie = document.cookie ? document.cookie.split(';')
-        .map(cookie => cookie.split('='))
-        .filter(([name, value]) => name === 'modalNotifier')
-        .map(([name, value]) => value) : null;
+    const cookie = document.cookie ?
+        document.cookie.split(';')
+            .map(cookie => cookie.split('='))
+            .filter(([name, value]) => name === 'modalNotifier')
+            .map(([name, value]) => value)
+        : null;
 
     if (!cookie) {
         const element = document.getElementById('modalNotifier');
@@ -35,7 +37,7 @@ const ModalNotifier = () => {
     return (
         <div id="modalNotifier" uk-modal className={s.modalNotifier}>
             <div className={cn(s.modalNotifier__body, "uk-modal-dialog uk-modal-body")}>
-                <h2 className="uk-modal-title">Useful info</h2>
+                <h2 className="uk-modal-title"><b>Useful info</b></h2>
                 <h3>
                     First:
                 </h3>
@@ -55,12 +57,14 @@ const ModalNotifier = () => {
                     <br />
                     - Dialogs.
                 </p>
+                <hr />
                 <h3>
                     Second:
                 </h3>
                 <p>
                     This site has been adapted for desktop only.
                 </p>
+                <hr />
                 <h3>
                     Third:
                 </h3>
@@ -72,8 +76,16 @@ const ModalNotifier = () => {
                     <br />
                     <b>Password:</b> free
                 </p>
+                <hr />
                 <h3>
                     Fourth:
+                </h3>
+                <p>
+                    There may be problems connecting to the API server.
+                </p>
+                <hr />
+                <h3>
+                    Fifth:
                 </h3>
                 <p>
                     <NavLink to={`/profile/18114`}>Link on my page</NavLink>
@@ -81,7 +93,7 @@ const ModalNotifier = () => {
                 </p>
                 <hr />
                 <p>
-                    You can open this notification again by clicking the button in the header.
+                    You can open this note again by clicking the button in the header.
                 </p>
                 <p className="uk-text-right">
                     <MyButton className="uk-modal-close" type="button">Ok</MyButton>

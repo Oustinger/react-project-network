@@ -18,7 +18,7 @@ const initialState = {
         { id: 2, dialogName: 'Dmitry', companions: [2] },
         { id: 3, dialogName: 'Sophia', companions: [3] },
         { id: 4, dialogName: 'Sergei', companions: [4] },
-        { id: 5, dialogName: 'Irina', companions: [5] },
+        { id: 5, dialogName: 'Irina', companions: [5, 1] },
     ],
     messages: [
         { id: 1, dialogId: 1, authorId: 1, message: 'Hi' },

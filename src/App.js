@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import UIkit from 'uikit';
 import s from './App.module.css';
 import withSuspect from './components/common/HOC/withSuspect';
 import Preloader from './components/common/Preloader/Preloader';
@@ -20,7 +21,12 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 
 class AppComponent extends Component {
     catchAllUnhandledErrors = (promiseRejectionEvent) => {
-        alert("Error occurred: " + promiseRejectionEvent.reason.message);
+        UIkit.notification({
+            message: `Error occurred: ${promiseRejectionEvent.reason.message}`,
+            status: 'danger',
+            timeout: 5000000,
+        });
+        // alert("Error occurred: " + promiseRejectionEvent.reason.message);
     }
 
     componentDidMount() {

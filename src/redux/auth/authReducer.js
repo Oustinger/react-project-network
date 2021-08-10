@@ -58,6 +58,7 @@ export const getAuthUserData = () => async (dispatch) => {
 
         const profileData = await profileAPI.getProfile(userId);
         dispatch(setAuthData(userId, email, login, profileData.photos, true));
+        
         return profileData;
     }
 
@@ -71,6 +72,7 @@ export const login = (formData) => async (dispatch) => {
         if (data.resultCode === 10) {
             dispatch(getCaptchaUrl());
         }
+        
         dispatch(stopSubmit('login', getErrors(data.messages)));
     }
 };

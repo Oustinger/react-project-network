@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ShadowSection from '../common/ShadowSection/ShadowSection';
 import s from './Navbar.module.css';
@@ -26,24 +25,6 @@ const Navbar = () => {
                             Dialogs
                         </NavLink>
                     </div>
-                    {/* <div className={s.item}>
-                    <NavLink to="/news" activeClassName={s.active}>
-                        <span className="uk-margin-small-right" uk-icon="icon: user"></span>
-                        News
-                    </NavLink>
-                </div>
-                <div className={s.item}>
-                    <NavLink to="/music" activeClassName={s.active}>
-                        <span className="uk-margin-small-right" uk-icon="icon: user"></span>
-                        Music
-                    </NavLink>
-                </div>
-                <div className={s.item}>
-                    <NavLink to="/settings" activeClassName={s.active}>
-                        <span className="uk-margin-small-right" uk-icon="icon: user"></span>
-                        Settings
-                    </NavLink>
-                </div> */}
                 </ShadowSection>
             </nav>
         </div>

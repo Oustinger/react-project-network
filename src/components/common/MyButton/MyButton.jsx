@@ -1,28 +1,28 @@
 import cn from 'classnames';
 import s from './MyButton.module.css';
 
-export default ({ children, onClick, disabled, key, className, isInvert, isSmall, isMedium, float, type, ukToggle }) => {
+export default (props) => {
     const classes = cn(
         'uk-button',
         'uk-button-default',
         s.btn,
-        className,
-        { [s.invert]: isInvert },
-        { [s.small]: isSmall },
-        { [s.medium]: isMedium },
-        { [s[`float-${float}`]]: float },
-        { 'uk-disabled': disabled },
-        { [s.disabled]: disabled },
+        props.className,
+        { [s.invert]: props.isInvert },
+        { [s.small]: props.isSmall },
+        { [s.medium]: props.isMedium },
+        { [s[`float-${props.float}`]]: props.float },
+        { 'uk-disabled': props.disabled },
+        { [s.disabled]: props.disabled },
     );
 
     return (
         <div className={classes}
-            onClick={onClick}
-            key={key}
-            type={type}
-            uk-toggle={ukToggle}
+            onClick={props.onClick}
+            key={props.key}
+            type={props.type}
+            uk-toggle={props.ukToggle}
         >
-            {children}
+            {props.children}
         </div>
     );
 }

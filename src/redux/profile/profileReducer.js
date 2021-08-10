@@ -1,8 +1,7 @@
-import _ from 'lodash';
+import { merge as lodashMerge } from 'lodash';
 import { reset as resetForm, stopSubmit } from 'redux-form';
-import { profileAPI } from "../../api/api";
+import { followAPI, getErrors, profileAPI } from "../../api/api";
 import { addProfileWallpaper } from '../../utils/userWallpaperHelper';
-import { getErrors, followAPI } from '../../api/api';
 
 const ADD_POST = 'network/profile/ADD-POST';
 const SET_USER_PROFILE = 'network/profile/SET_USER_PROFILE';
@@ -19,9 +18,9 @@ const TOGGLE_UPLOADING_DATA_IN_PROGRESS = 'network/users/TOGGLE_UPLOADING_DATA_I
 
 const initialState = {
     posts: [
-        { id: 1, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', likesCount: '25' },
+        { id: 1, message: 'My first post! :)', likesCount: '10' },
         { id: 2, message: 'Hello, friends!!!', likesCount: '12' },
-        { id: 3, message: 'My first post! :)', likesCount: '10' },
+        { id: 3, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', likesCount: '25' },
     ],
     profile: null,
     status: '',
@@ -67,10 +66,10 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, ...action.payload };
         }
         case FOLLOW: {
-            return { ...state, isFollowed: true };
+            return { ...state, ...action.payload };
         }
         case UNFOLLOW: {
-            return { ...state, isFollowed: false };
+            return { ...state, ...action.payload };
         }
         case TOGGLE_FOLLOWING_PROGRESS: {
             return { ...state, ...action.payload };
@@ -111,8 +110,8 @@ export const toggleProfileDataEditMode = () => (
 export const setIsFollowed = (isFollowed) => (
     { type: SET_IS_FOLLOWED, payload: { isFollowed } }
 );
-export const followSuccess = () => ({ type: FOLLOW });
-export const unfollowSuccess = () => ({ type: UNFOLLOW });
+export const followSuccess = () => ({ type: FOLLOW, payload: { isFollowed: true } });
+export const unfollowSuccess = () => ({ type: UNFOLLOW, payload: { isFollowed: false } });
 export const toggleFollowingProgress = (isFollowingInProgress) => ({
     type: TOGGLE_FOLLOWING_PROGRESS, payload: { isFollowingInProgress }
 });
@@ -153,21 +152,21 @@ export const savePhoto = (file) => async (dispatch) => {
     if (data.resultCode === 0)
         dispatch(savePhotoSuccess(data.data.photos));
 };
-const checkUpdateProfileFormData = (formData) => {
-    const fixedContacts = Object.entries(formData.contacts).filter(([contact, address]) => address)
-        .filter(([contact, address]) => !address.includes('://'))
-        .map(([contact, address]) => [contact, `https://${address}`])
-        .reduce((acc, [contact, address]) => ({ ...acc, [contact]: address }), {});
-
-    return _.merge({ ...formData, contacts: { ...formData.contacts } }, { contacts: fixedContacts });
-};
 export const updateProfileData = (formData) => async (dispatch, getState) => {
+    const toFormatFormData = (formData) => {
+        const fixedContacts = Object.entries(formData.contacts).filter(([contact, address]) => address)
+            .filter(([contact, address]) => !address.includes('://'))
+            .map(([contact, address]) => [contact, `https://${address}`])
+            .reduce((acc, [contact, address]) => ({ ...acc, [contact]: address }), {});
+    
+        return lodashMerge({ ...formData, contacts: { ...formData.contacts } }, { contacts: fixedContacts });
+    };
+
     const userId = getState().auth.userId;
-    const checkedFromData = checkUpdateProfileFormData(formData);
 
     dispatch(toggleUploadingDataInProgress(true));
 
-    const data = await profileAPI.updateData({ userId, ...checkedFromData });
+    const data = await profileAPI.updateData({ userId, ...toFormatFormData(formData) });
     if (data.resultCode === 0) {
         dispatch(toggleProfileDataEditMode());
         dispatch(getUserProfile(userId));

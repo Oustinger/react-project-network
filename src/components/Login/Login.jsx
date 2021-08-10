@@ -36,7 +36,8 @@ const LoginForm = ({ error, handleSubmit, captchaUrl, isFetchingLoggingIn }) => 
                 })}
                 {
                     captchaUrl &&
-                    <img src={captchaUrl} className={cn(stylesFormsControls.fullFiled, stylesFormsControls.captchaImg)} />
+                    <img src={captchaUrl}
+                        className={cn(stylesFormsControls.fullFiled, stylesFormsControls.captchaImg)} />
                 }
                 {
                     captchaUrl &&
@@ -72,7 +73,8 @@ const Login = ({ isAuth, captchaUrl, login }) => {
     };
 
     return <div>
-        <LoginReduxForm onSubmit={handleSubmit} captchaUrl={captchaUrl} isFetchingLoggingIn={isFetchingLoggingIn} />
+        <LoginReduxForm onSubmit={handleSubmit} captchaUrl={captchaUrl}
+            isFetchingLoggingIn={isFetchingLoggingIn} initialValues={{ rememberMe: true }} />
     </div>
 };
 
