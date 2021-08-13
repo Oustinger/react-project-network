@@ -26,7 +26,6 @@ class AppComponent extends Component {
             status: 'danger',
             timeout: 5000000,
         });
-        // alert("Error occurred: " + promiseRejectionEvent.reason.message);
     }
 
     componentDidMount() {

@@ -1,5 +1,6 @@
 import { reduxForm } from 'redux-form';
 import { maxLengthCreator } from '../../../utils/validators';
+import { firstLetterToUpperCase } from './../../../utils/stringHelpers';
 import { required } from './../../../utils/validators';
 import { createField, FormButton, Input, Textarea } from './../../common/FormsControls/FormsControls';
 import stylesFormsControls from './../../common/FormsControls/FormsControls.module.css';
@@ -8,10 +9,10 @@ import s from './ProfileInfo.module.css';
 const maxLength100 = maxLengthCreator(100);
 
 const contacts = ['github', 'vk', 'facebook', 'instagram', 'twitter', 'website', 'youtube'];
-const Contact = (name) => (<div>
+const Contact = ({ name }) => (<div>
     {createField(Input, [maxLength100], `contacts.${name}`, {
         placeholder: name,
-        label: `${name.toUpperCase()}: `,
+        label: `${firstLetterToUpperCase(name)}: `,
     })}
 </div>);
 

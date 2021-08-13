@@ -8,7 +8,7 @@ const MessageItem = ({ message, author, photoMe }) => {
                 author.id === 0 ?
                     <div className={s.message__me}>
                         <span>{message}</span>
-                        <img src={photoMe} />
+                        <img src={photoMe || userImg} />
                     </div>
                     : <div className={s.message__companion}>
                         <div className={s.message__imgContainer}>

@@ -27,7 +27,9 @@ const ProfileStatus = (props) => {
                 {
                     !editMode ?
                         props.isOwner ?
-                            <span onDoubleClick={toggleEditMode} className={s.statusText} uk-tooltip="Click double">
+                            <span onDoubleClick={toggleEditMode} className={s.statusText}
+                                uk-tooltip="Double click to edit"
+                            >
                                 {status || '-set-status-'}
                             </span>
                             : <span>{status}</span>

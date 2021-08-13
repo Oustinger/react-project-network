@@ -4,7 +4,6 @@ import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 import App from './App';
 import './index.css';
-import store from './redux/reduxStore';
 import reportWebVitals from './reportWebVitals';
 
 // loads the Icon plugin

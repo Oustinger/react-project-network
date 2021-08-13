@@ -62,7 +62,7 @@ const ModalNotifier = () => {
                     Second:
                 </h3>
                 <p>
-                    This site has been adapted for desktop only.
+                    This version of project has been adapted for desktop only.
                 </p>
                 <hr />
                 <h3>
@@ -81,7 +81,7 @@ const ModalNotifier = () => {
                     Fourth:
                 </h3>
                 <p>
-                    There may be problems connecting to the API server.
+                    Sometimes there may be problems connecting to the API server.
                 </p>
                 <hr />
                 <h3>
@@ -93,7 +93,7 @@ const ModalNotifier = () => {
                 </p>
                 <hr />
                 <p>
-                    You can open this note again by clicking the button in the header.
+                    You can open this note again by clicking the button "Useful info" in the header.
                 </p>
                 <p className="uk-text-right">
                     <MyButton className="uk-modal-close" type="button">Ok</MyButton>
