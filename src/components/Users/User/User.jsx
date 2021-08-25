@@ -12,7 +12,7 @@ const User = ({ user, followingInProgress, unfollow, follow, urlHistory }) => (
             <div className={cn(s.user__data)}>
                 <div className={s.user__photo}>
                     <div className={s.user__photo__imgContainer}>
-                        <img src={user.photos.small || userImg} />
+                        <img src={user.photos.small || userImg} alt='user img' />
                     </div>
                 </div>
                 <div className={s.user__info}>

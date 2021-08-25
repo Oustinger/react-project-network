@@ -12,7 +12,7 @@ const DialogItem = ({ id, name, activeId }) => {
             activeClassName={s.active}
         >
             <div className={s.dialog} >
-                <img src={userImg} />
+                <img src={userImg} alt='user img' />
                 <span>{name}</span>
             </div>
         </NavLink>

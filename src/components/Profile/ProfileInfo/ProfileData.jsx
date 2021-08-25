@@ -30,7 +30,7 @@ const ProfileData = ({ profile, goToEditMode, isOwner }) => {
                 <div>
                     <div className={'flex-row-xs-yc'}>
                         <b className={s.data__lookingJob__text}>Looking for a job: </b>
-                        <img className={s.data__lookingJob__checkMark} src={checkMark} />
+                        <img className={s.data__lookingJob__checkMark} src={checkMark} alt='check mark' />
                     </div>
                     <div><b>Description:</b><br />{profile.lookingForAJobDescription}</div>
                 </div>
@@ -42,8 +42,8 @@ const ProfileData = ({ profile, goToEditMode, isOwner }) => {
                         {contacts.map(([name, address], index) => (
                             (index <= middleContactIndex || contacts.length <= maxRowContacts) && (
                                 <div key={name} className={s.data__contactsList__imgContainer}>
-                                    <a target="_blank" href={address}>
-                                        <img src={socials[name.toLowerCase()]} />
+                                    <a target="_blank" rel="noreferrer" href={address}>
+                                        <img src={socials[name.toLowerCase()]} alt='social network icon' />
                                     </a>
                                 </div>
                             )
@@ -55,8 +55,8 @@ const ProfileData = ({ profile, goToEditMode, isOwner }) => {
                             {contacts.map(([name, address], index) => (
                                 index > middleContactIndex && (
                                     <div key={name} className={s.data__contactsList__imgContainer}>
-                                        <a target="_blank" href={address}>
-                                            <img src={socials[name.toLowerCase()]} />
+                                        <a target="_blank" rel="noreferrer" href={address}>
+                                            <img src={socials[name.toLowerCase()]} alt='social network icon' />
                                         </a>
                                     </div>
                                 )

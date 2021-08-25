@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import Preloader from "../Preloader/Preloader";
 
-export default (Component) => (props) => {
+const withSuspect = (Component) => (props) => {
     return <Suspense fallback={<Preloader />}>
         <Component {...props} />
-    </Suspense>
-}
+    </Suspense>;
+};
+export default withSuspect;

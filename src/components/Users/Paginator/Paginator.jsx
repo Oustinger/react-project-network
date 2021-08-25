@@ -14,6 +14,7 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onChangePageNumber,
     const [portionNumber, setPortionNumber] = useState(startPortionNumber);
     useEffect(() => {
         setPortionNumber(startPortionNumber);
+        // eslint-disable-next-line
     }, [currentPage]);
 
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;

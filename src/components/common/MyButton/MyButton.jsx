@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import s from './MyButton.module.css';
 
-export default (props) => {
+const MyButton = (props) => {
     const classes = cn(
         'uk-button',
         'uk-button-default',
@@ -12,7 +12,7 @@ export default (props) => {
         { [s.medium]: props.isMedium },
         { [s[`float-${props.float}`]]: props.float },
         { 'uk-disabled': props.disabled },
-        { [s.disabled]: props.disabled },
+        { [s.disabled]: props.disabled }
     );
 
     return (
@@ -25,4 +25,5 @@ export default (props) => {
             {props.children}
         </div>
     );
-}
+};
+export default MyButton;

@@ -38,7 +38,8 @@ const ProfileInfo = ({
                                                 <input id="changeImg" className={s.changeUserPhoto__input}
                                                     type='file' onChange={onSavePhoto} />
                                                 <label htmlFor="changeImg" className={s.changeUserPhoto__label}>
-                                                    <img src={profile.photos.large || userImg} />
+                                                    <img src={profile.photos.large || userImg}
+                                                        alt='user img' />
                                                     <div className={s.changeUserPhoto__label__textContainer}>
                                                         <span className={s.changeUserPhoto__label__text}>
                                                             <b>
@@ -53,7 +54,7 @@ const ProfileInfo = ({
                                                     </div>
                                                 </label>
                                             </>
-                                            : <img src={profile.photos.large || userImg} />
+                                            : <img src={profile.photos.large || userImg} alt='user img' />
                                     }
                                 </div>
                             </div>

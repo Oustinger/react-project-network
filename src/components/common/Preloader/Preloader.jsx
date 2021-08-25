@@ -15,11 +15,11 @@ const Preloader = ({ isAllBlockSize, children, position }) => {
             {
                 !isAllBlockSize ?
                     <div className={classNames}>
-                        <img className={s.preloader__img} src={preloader} />
+                        <img className={s.preloader__img} src={preloader} alt='preloader' />
                     </div>
                     : <div className={s.allBlockSizeContainer}>
                         <div className={classNames}>
-                            <img className={s.preloader__img} src={preloader} />
+                            <img className={s.preloader__img} src={preloader} alt='preloader' />
                         </div>
                         {children}
                     </div>

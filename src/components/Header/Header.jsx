@@ -11,7 +11,7 @@ const Header = (props) => {
             <header className={cn(s.header, 'flex-row-xb-yc')}>
                 <NavLink to={`/profile/${props.userId}`}>
                     <div className={cn(s.logo, 'flex-row-xs-yc')}>
-                        <img src={logoSvg} />
+                        <img src={logoSvg} alt='logo img' />
                         <span>Network</span>
                     </div>
                 </NavLink>
@@ -58,7 +58,9 @@ const Header = (props) => {
                                             cn(s.authBlock_highlighter, 'hover-highlight', 'flex-row-xs-yc')
                                         }>
                                             <div className={s.login__btn__userName}>{props.login}</div>
-                                            <img className={s.login__btn__userImg} src={props.photo || userImg} />
+                                            <img className={s.login__btn__userImg}
+                                                src={props.photo || userImg}
+                                                alt='login btn with user img' />
                                             <span className="uk-margin-small-right" uk-icon="icon: chevron-down"></span>
                                         </div>
                                     </button>
@@ -78,6 +80,7 @@ const Header = (props) => {
                                                     </NavLink>
                                                 </div>
                                                 <div>
+                                                    {/* eslint-disable-next-line */}
                                                     <a href="#" onClick={props.logout}
                                                         className='flex-row-xs-yc'>
                                                         LogOut

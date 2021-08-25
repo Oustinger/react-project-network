@@ -36,7 +36,7 @@ const LoginForm = ({ error, handleSubmit, captchaUrl, isFetchingLoggingIn }) => 
                 })}
                 {
                     captchaUrl &&
-                    <img src={captchaUrl}
+                    <img src={captchaUrl} alt='captcha img'
                         className={cn(stylesFormsControls.fullFiled, stylesFormsControls.captchaImg)} />
                 }
                 {

@@ -5,7 +5,7 @@ import userDefaultImg from '../../../../assets/imgs/user.png';
 const Post = ({ userImg, message, likesCount }) => {
     return (
         <div className={s.item}>
-            <img className={s.item__img} src={userImg || userDefaultImg} />
+            <img className={s.item__img} src={userImg || userDefaultImg} alt='user img' />
             <span>
                 {message}
             </span>

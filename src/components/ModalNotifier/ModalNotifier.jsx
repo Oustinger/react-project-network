@@ -35,7 +35,7 @@ const ModalNotifier = () => {
     });
 
     return (
-        <div id="modalNotifier" uk-modal className={s.modalNotifier}>
+        <div id="modalNotifier" uk-modal="true" className={s.modalNotifier}>
             <div className={cn(s.modalNotifier__body, "uk-modal-dialog uk-modal-body")}>
                 <h2 className="uk-modal-title"><b>Useful info</b></h2>
                 <h3>
@@ -95,9 +95,9 @@ const ModalNotifier = () => {
                 <p>
                     You can open this note again by clicking the button "Useful info" in the header.
                 </p>
-                <p className="uk-text-right">
+                <div className="uk-text-right">
                     <MyButton className="uk-modal-close" type="button">Ok</MyButton>
-                </p>
+                </div>
             </div>
         </div>
     );
