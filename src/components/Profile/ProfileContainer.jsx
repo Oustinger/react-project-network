@@ -45,7 +45,7 @@ class ProfileContainer extends React.Component {
                     posts={this.props.posts}
                     addPost={this.props.addPost}
                     resetPostForm={this.props.resetPostForm}
-                    isFetchingUserProfile={this.props.isFetchingUserProfile}
+                    isProfileDataLoaded={!this.props.isFetchingUserProfile && this.props.profile}
                     isOwner={this.props.authUserId === this.getCurrentUserId()}
                     savePhoto={this.props.savePhoto}
                     profileDataEditMode={this.props.profileDataEditMode}

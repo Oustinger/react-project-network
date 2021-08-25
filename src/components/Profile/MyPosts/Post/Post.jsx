@@ -1,10 +1,11 @@
 import cn from 'classnames';
 import s from '../MyPosts.module.css';
+import userDefaultImg from '../../../../assets/imgs/user.png';
 
-const Post = ({ message, likesCount }) => {
+const Post = ({ userImg, message, likesCount }) => {
     return (
         <div className={s.item}>
-            <img className={s.item__img} src="https://miro.medium.com/max/1838/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" />
+            <img className={s.item__img} src={userImg || userDefaultImg} />
             <span>
                 {message}
             </span>

@@ -9,13 +9,11 @@ import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import cn from 'classnames';
 
 const ProfileInfo = ({
-    profile, isFetchingUserProfile, updateProfileStatus, status,
+    profile, isProfileDataLoaded, updateProfileStatus, status,
     isOwner, savePhoto, goToEditMode, updateProfileData, editMode,
     isFollowingInProgress, unfollow, follow, urlHistory,
     isFollowed, wallpaper, isUploadingDataInProgress,
 }) => {
-    const isProfileDataLoaded = !isFetchingUserProfile && profile;
-
     const onSavePhoto = ({ currentTarget }) => {
         if (currentTarget.files.length)
             savePhoto(currentTarget.files[0])

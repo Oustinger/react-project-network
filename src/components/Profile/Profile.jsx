@@ -8,7 +8,7 @@ const Profile = (props) => {
             <ProfileInfo profile={props.profile}
                 status={props.status}
                 updateProfileStatus={props.updateProfileStatus}
-                isFetchingUserProfile={props.isFetchingUserProfile}
+                isProfileDataLoaded={props.isProfileDataLoaded}
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
                 goToEditMode={props.toggleProfileDataEditMode}
@@ -23,7 +23,9 @@ const Profile = (props) => {
                 urlHistory={props.urlHistory} />
             <MyPosts posts={props.posts}
                 addPost={props.addPost}
-                resetPostForm={props.resetPostForm} />
+                resetPostForm={props.resetPostForm}
+                isProfileDataLoaded={props.isProfileDataLoaded}
+                profile={props.profile} />
         </div>
     );
 }
